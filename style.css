@@ -16,12 +16,13 @@ hr {
 }
 
 .faded {
-  color: rgba(255, 255, 255, 0.8); 
+  color: rgba(255, 0, 0, 0.8); 
+  text-shadow: 3px 2px black;
 }
 
 header.startup {
   background-position: center;
-  background-image: url("header.jpg");
+  background-image: url("header 2.jpg");
   background-size: cover;
   height: 100%;
 }
@@ -47,8 +48,8 @@ header.startup h1 {
 }
 
 .btn-primary {
-  background-color: #F05F44;
-  border-color: #F05F44; }
+  background-color: #FF0000;
+  border-color: #FF0000; }
 
 .btn-primary:hover {
   background-color: #ee4b08;
