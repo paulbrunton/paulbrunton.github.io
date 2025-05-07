@@ -48,8 +48,8 @@ header.startup h1 {
 }
 
 .btn-primary {
-  background-color: #268cf2;
-  border-color: #268cf2; }
+  background-color: #FF0000;
+  border-color: #FF0000; }
 
 .btn-primary:hover {
   background-color: #ee4b08;
