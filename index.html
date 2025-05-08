@@ -1,48 +1,269 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Startup</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-    <!-- Bootstrap CSS from a CDN. This way you don't have to include the bootstrap file yourself -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
-    <!-- My own stylesheet -->
-    <link href="style.css" rel="stylesheet">
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Name | Sculptor</title>
     <style>
-      h1.text-uppercase.faded {
-        color: white;
-        text-shadow: 2px 2px 4px red;
-      }
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 40px 0 20px;
+        }
+        
+        .site-title {
+            font-size: 24px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        /* Navigation */
+        nav {
+            margin-bottom: 40px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin-right: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Content Styles */
+        .page-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .project {
+            margin-bottom: 40px;
+        }
+        
+        .project-title {
+            font-size: 16px;
+            font-weight: normal;
+            margin: 10px 0 5px;
+        }
+        
+        .project-info {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* About Page */
+        .about-content {
+            max-width: 800px;
+        }
+        
+        .about-text {
+            margin-bottom: 30px;
+        }
+        
+        .cv-section {
+            margin-bottom: 30px;
+        }
+        
+        .cv-section h3 {
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cv-item {
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Page */
+        .contact-content {
+            max-width: 600px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .page-content {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin-bottom: 10px;
+            }
+        }
     </style>
-  </head>
-  <body>
-     <header>
-       <header class="startup text-center text-white d-flex">
-      <div class="container my-auto">
-        <div class="row">
-          <div class="col-lg-12 my-auto">
-            <h1 class="text-uppercase.faded">
-              <strong>A small step into the void</strong>
-            </h1>
-            <hr>
-          </div>
-          <div class="col-lg-12 my-auto">
-            <button class="btn btn-primary btn-xl">Find Out More</button>
-          </div>
-        </div>
-      </div>
-          <h1>Contact Paul Brunton</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    </header>
-
-  </body>
-</html>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="site-title"><a href="index.html">ARTIST NAME</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="press.html">Press</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Home/Work Page -->
+            <div class="page-content">
+                <div class="project">
+                    <a href="project1.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 1">
+                    </a>
+                    <h2 class="project-title">Project Title 1</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+                
+                <div class="project">
+                    <a href="project2.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 2">
+                    </a>
+                    <h2 class="project-title">Project Title 2</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+                
+                <div class="project">
+                    <a href="project3.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 3">
+                    </a>
+                    <h2 class="project-title">Project Title 3</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+                
+                <div class="project">
+                    <a href="project4.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 4">
+                    </a>
+                    <h2 class="project-title">Project Title 4</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+                
+                <div class="project">
+                    <a href="project5.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 5">
+                    </a>
+                    <h2 class="project-title">Project Title 5</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+                
+                <div class="project">
+                    <a href="project6.html">
+                        <img src="/api/placeholder/600/400" alt="Sculpture Project 6">
+                    </a>
+                    <h2 class="project-title">Project Title 6</h2>
+                    <p class="project-info">Material, Year</p>
+                </div>
+            </div>
+            
+            <!-- About Page Template -->
+            <div class="about-content" style="display: none;">
+                <div class="about-text">
+                    <p>[Artist statement paragraph 1]</p>
+                    <p>[Artist statement paragraph 2]</p>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <p>[Degree], [Institution], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Degree], [Institution], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Solo Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Group Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Awards & Residencies</h3>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [Location], [Year]</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Page Template -->
+           
