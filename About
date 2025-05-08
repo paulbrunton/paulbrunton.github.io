@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | ARTIST NAME | Sculptor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="site-title"><a href="index.html">ARTIST NAME</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Work</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="press.html">Press</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- About Page -->
+            <div class="about-content">
+                <div class="about-text">
+                    <p>[Artist statement paragraph 1. Introduce your artistic philosophy, approach, and what drives your creative practice.]</p>
+                    <p>[Artist statement paragraph 2. Discuss your relationship with materials, forms, and how these elements communicate your artistic vision.]</p>
+                    <p>[Artist statement paragraph 3. Connect your work to broader themes, influences, or artistic movements that inspire your practice.]</p>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <p>[MFA in Sculpture], [Institution Name], [City, Country], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[BFA in Fine Arts], [Institution Name], [City, Country], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Solo Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Group Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Awards & Residencies</h3>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [City, Country], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [City, Country], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Collections</h3>
+                    <div class="cv-item">
+                        <p>[Museum/Collection Name], [City, Country]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Private Collection], [City, Country]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Publications</h3>
+                    <div class="cv-item">
+                        <p>"[Publication Title]," [Publisher/Journal], [City, Country], [Year]</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 ARTIST NAME. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
