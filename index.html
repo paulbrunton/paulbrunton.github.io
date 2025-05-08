@@ -3,152 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Name | Sculptor</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-        }
-        
-        a {
-            color: #333;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            padding: 40px 0 20px;
-        }
-        
-        .site-title {
-            font-size: 24px;
-            font-weight: normal;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-        }
-        
-        /* Navigation */
-        nav {
-            margin-bottom: 40px;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        nav li {
-            margin-right: 20px;
-            margin-bottom: 10px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Content Styles */
-        .page-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        
-        .project {
-            margin-bottom: 40px;
-        }
-        
-        .project-title {
-            font-size: 16px;
-            font-weight: normal;
-            margin: 10px 0 5px;
-        }
-        
-        .project-info {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        /* About Page */
-        .about-content {
-            max-width: 800px;
-        }
-        
-        .about-text {
-            margin-bottom: 30px;
-        }
-        
-        .cv-section {
-            margin-bottom: 30px;
-        }
-        
-        .cv-section h3 {
-            font-size: 16px;
-            font-weight: normal;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .cv-item {
-            margin-bottom: 15px;
-        }
-        
-        /* Contact Page */
-        .contact-content {
-            max-width: 600px;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 30px 0;
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            border-top: 1px solid #eee;
-            margin-top: 60px;
-        }
-        
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .page-content {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav li {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <title>ARTIST NAME | Sculptor</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -156,7 +12,7 @@
             <h1 class="site-title"><a href="index.html">ARTIST NAME</a></h1>
             <nav>
                 <ul>
-                    <li><a href="work.html">Work</a></li>
+                    <li><a href="index.html">Work</a></li>
                     <li><a href="exhibitions.html">Exhibitions</a></li>
                     <li><a href="press.html">Press</a></li>
                     <li><a href="about.html">About</a></li>
@@ -166,5 +22,73 @@
         </header>
         
         <main>
-  
-          
+            <!-- Work/Portfolio Page -->
+            <div class="page-content">
+                <div class="project">
+                    <a href="project1.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project1.jpg" alt="Sculpture Project 1">
+                        </div>
+                        <h2 class="project-title">Project Title 1</h2>
+                        <p class="project-info">Bronze, marble, 80 × 45 × 30 cm, 2025</p>
+                    </a>
+                </div>
+                
+                <div class="project">
+                    <a href="project2.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project2.jpg" alt="Sculpture Project 2">
+                        </div>
+                        <h2 class="project-title">Project Title 2</h2>
+                        <p class="project-info">Steel, wood, 120 × 60 × 40 cm, 2024</p>
+                    </a>
+                </div>
+                
+                <div class="project">
+                    <a href="project3.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project3.jpg" alt="Sculpture Project 3">
+                        </div>
+                        <h2 class="project-title">Project Title 3</h2>
+                        <p class="project-info">Clay, pigment, 35 × 25 × 25 cm, 2024</p>
+                    </a>
+                </div>
+                
+                <div class="project">
+                    <a href="project4.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project4.jpg" alt="Sculpture Project 4">
+                        </div>
+                        <h2 class="project-title">Project Title 4</h2>
+                        <p class="project-info">Mixed media, 90 × 50 × 45 cm, 2023</p>
+                    </a>
+                </div>
+                
+                <div class="project">
+                    <a href="project5.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project5.jpg" alt="Sculpture Project 5">
+                        </div>
+                        <h2 class="project-title">Project Title 5</h2>
+                        <p class="project-info">Stone, metal, 110 × 70 × 50 cm, 2023</p>
+                    </a>
+                </div>
+                
+                <div class="project">
+                    <a href="project6.html">
+                        <div class="project-image-container">
+                            <img class="project-image" src="images/project6.jpg" alt="Sculpture Project 6">
+                        </div>
+                        <h2 class="project-title">Project Title 6</h2>
+                        <p class="project-info">Bronze, glass, 65 × 40 × 35 cm, 2022</p>
+                    </a>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 ARTIST NAME. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
