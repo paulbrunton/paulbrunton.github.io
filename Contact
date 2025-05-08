@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | ARTIST NAME | Sculptor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="site-title"><a href="index.html">ARTIST NAME</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Work</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="press.html">Press</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Contact Page -->
+            <div class="contact-content">
+                <p>For inquiries regarding exhibitions, commissions, or studio visits:</p>
+                <p>Email: <a href="mailto:info@artistname.com">info@artistname.com</a></p>
+                <p>Instagram: <a href="#" target="_blank">@artistname</a></p>
+                <p>Studio: [Studio Address, City, Country]</p>
+                <p>Studio visits available by appointment</p>
+                
+                <div style="margin-top: var(--spacing-lg);">
+                    <p><strong>Gallery Representation:</strong></p>
+                    <p>[Gallery Name]<br>
+                    [Gallery Address]<br>
+                    [City, Country]<br>
+                    <a href="mailto:gallery@example.com">gallery@example.com</a><br>
+                    <a href="#" target="_blank">www.gallerydomain.com</a></p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 ARTIST NAME. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
