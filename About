@@ -1,0 +1,46 @@
+ <div class="about-content" style="display: none;">
+                <div class="about-text">
+                    <p>[Artist statement paragraph 1]</p>
+                    <p>[Artist statement paragraph 2]</p>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <p>[Degree], [Institution], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Degree], [Institution], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Solo Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Group Exhibitions</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum], [Location], [Year]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Awards & Residencies</h3>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [Location], [Year]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>[Award/Residency Name], [Institution], [Location], [Year]</p>
+                    </div>
+                </div>
+            </div>
