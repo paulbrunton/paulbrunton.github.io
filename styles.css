@@ -1,0 +1,329 @@
+/* Global Styles */
+:root {
+    --primary-color: #333;
+    --secondary-color: #666;
+    --accent-color: #f0f0f0;
+    --hover-color: #000;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    --font-main: 'Helvetica Neue', Arial, sans-serif;
+    --font-size-small: 14px;
+    --font-size-medium: 16px;
+    --font-size-large: 24px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--primary-color);
+    background-color: #fff;
+    letter-spacing: 0.01em;
+    font-weight: 300;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity var(--transition-speed) ease;
+}
+
+img:hover {
+    opacity: 0.95;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Header Styles */
+header {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    border-bottom: 1px solid var(--accent-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+.site-title {
+    font-size: var(--font-size-large);
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+}
+
+.site-title a {
+    position: relative;
+    display: inline-block;
+}
+
+.site-title a:hover {
+    text-decoration: none;
+}
+
+.site-title a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.site-title a:hover::after {
+    width: 100%;
+}
+
+/* Navigation */
+nav {
+    margin-bottom: var(--spacing-xl);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin-right: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-small);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+nav a {
+    position: relative;
+    padding-bottom: 3px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Content Styles */
+.page-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.project {
+    margin-bottom: var(--spacing-lg);
+    opacity: 1;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.project:hover {
+    opacity: 0.95;
+}
+
+.project-image-container {
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-image {
+    transition: transform var(--transition-speed) ease;
+}
+
+.project:hover .project-image {
+    transform: scale(1.02);
+}
+
+.project-title {
+    font-size: var(--font-size-medium);
+    font-weight: 300;
+    margin: var(--spacing-sm) 0 5px;
+    letter-spacing: 0.5px;
+}
+
+.project-info {
+    font-size: var(--font-size-small);
+    color: var(--secondary-color);
+    letter-spacing: 0.5px;
+}
+
+/* About Page */
+.about-content {
+    max-width: 800px;
+    padding-right: var(--spacing-lg);
+}
+
+.about-text {
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+    font-size: var(--font-size-medium);
+}
+
+.about-text p {
+    margin-bottom: var(--spacing-md);
+}
+
+.cv-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cv-section h3 {
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--secondary-color);
+}
+
+.cv-item {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+}
+
+/* Contact Page */
+.contact-content {
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+.contact-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Project detail page */
+.project-detail {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.project-images {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.project-details {
+    padding-top: var(--spacing-sm);
+}
+
+.project-details h1 {
+    font-size: var(--font-size-large);
+    font-weight: 300;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.5px;
+}
+
+.project-metadata {
+    margin-bottom: var(--spacing-md);
+    color: var(--secondary-color);
+    font-size: var(--font-size-small);
+}
+
+.project-description {
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+}
+
+.project-navigation {
+    margin-top: var(--spacing-xl);
+    font-size: var(--font-size-small);
+}
+
+/* Footer */
+footer {
+    padding: var(--spacing-lg) 0;
+    font-size: 12px;
+    color: var(--secondary-color);
+    text-align: center;
+    border-top: 1px solid var(--accent-color);
+    margin-top: var(--spacing-xl);
+    letter-spacing: 1px;
+}
+
+/* Mobile Styles */
+@media (max-width: 1024px) {
+    .project-detail {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-content {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    header {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .site-title {
+        font-size: 20px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav li {
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .page-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-title {
+        font-size: 18px;
+    }
+    
+    :root {
+        --spacing-lg: 30px;
+        --spacing-xl: 50px;
+    }
+}
