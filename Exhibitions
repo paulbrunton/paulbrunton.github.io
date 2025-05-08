@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibitions | ARTIST NAME | Sculptor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="site-title"><a href="index.html">ARTIST NAME</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Work</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="press.html">Press</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Exhibitions Page -->
+            <div class="about-content">
+                <div class="cv-section">
+                    <h3>Current & Upcoming</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country]<br>
+                        [Date Range, Year]</p>
+                        <p>[Brief description of the exhibition and your work's role in it.]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>2025</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country]<br>
+                        [Date Range]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>2024</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country]<br>
+                        [Date Range]</p>
+                    </div>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country]<br>
+                        [Date Range]</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>2023</h3>
+                    <div class="cv-item">
+                        <p>"[Exhibition Title]," [Gallery/Museum Name], [City, Country]<br>
+                        [Date Range]</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 ARTIST NAME. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
