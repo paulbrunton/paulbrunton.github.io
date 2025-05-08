@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Brunton - Artist & Captain</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        
+        /* Action Buttons Top */
+        .action-buttons-top {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .primary-btn {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .primary-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .secondary-btn {
+            padding: 12px 24px;
+            background-color: transparent;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .footer-info {
+            max-width: 300px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 60px;
+        }
+        
+        .footer-links-column {
+            min-width: 120px;
+        }
+        
+        .footer-links-column h4 {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .footer-links-column ul {
+            list-style: none;
+        }
+        
+        .footer-links-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links-column a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links-column a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                margin-top: 30px;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Paul Brunton</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="action-buttons-top">
+                    <a href="#" class="action-btn">Action 1</a>
+                    <a href="#" class="action-btn">Action 2</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Medium length hero headline goes here</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+            <div class="hero-buttons">
+                <a href="#" class="primary-btn">Main action</a>
+                <a href="#" class="secondary-btn">Secondary action</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/500/300');"></div>
+                    <div class="service-content">
+                        <h3>Large Wooden Sculptures</h3>
+                        <p>Discover the artistry of large wooden sculptures created by Paul Brunton</p>
+                        <a href="#" class="primary-btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/500/300');"></div>
+                    <div class="service-content">
+                        <h3>Boat Captain Services</h3>
+                        <p>Explore the waters with Captain Paul</p>
+                        <a href="#" class="primary-btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/500/300');"></div>
+                    <div class="service-content">
+                        <h3>Tai Chi Practice</h3>
+                        <p>Experience the beauty of Tai Chi with Paul</p>
+                        <a href="#" class="primary-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to bring some art into your life?</h2>
+            <p>Explore Paul Brunton's unique collection of large wooden sculptures and transport yourself to a world of creativity and imagination.</p>
+            <a href="#" class="primary-btn">View Gallery</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">What We Offer</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Unique Wooden Sculptures</h3>
+                    <p>Explore a collection of one-of-a-kind wooden sculptures crafted by Paul Brunton.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Transportation Services</h3>
+                    <p>Need reliable transportation services? Paul Brunton offers safe and efficient transport solutions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Tai Chi Practice</h3>
+                    <p>Join Paul Brunton in his Tai Chi sessions to experience the benefits of this ancient martial art.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Paul Brunton</div>
+                    <p>Artist, Captain, and Tai Chi Instructor offering unique services and experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Wooden Sculptures</a></li>
+                            <li><a href="#">Boat Captain Services</a></li>
+                            <li><a href="#">Tai Chi Practice</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:info@paulbrunton.com">info@paulbrunton.com</a></li>
+                            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Paul Brunton. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
