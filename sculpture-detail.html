@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sculpture Title - Paul Brunton Sculpture</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for sculpture-detail.html */
+        .detail-header {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            margin-bottom: 50px;
+        }
+
+        .detail-header h1 {
+            font-size: 3.5em;
+            color: var(--color-text-light);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+        }
+
+        .detail-header p {
+            font-size: 1.2em;
+            color: #ccc;
+            font-family: var(--font-alt);
+        }
+
+        .sculpture-visuals {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .main-image-wrapper {
+            position: relative;
+            padding-bottom: 60%; /* Aspect ratio (e.g., 50% for 2:1, 75% for 4:3) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .main-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .thumbnail-gallery img {
+            width: 120px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .thumbnail-gallery img:hover,
+        .thumbnail-gallery img.active {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .sculpture-details-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Info on left, Description on right */
+            gap: 50px;
+            margin-bottom: 80px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-block h3 {
+            font-size: 1.8em;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .info-block p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .description-block h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .description-block p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .detail-header {
+                padding: 60px 15px;
+            }
+            .detail-header h1 {
+                font-size: 2.8em;
+            }
+            .sculpture-details-content {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+            .thumbnail-gallery img {
+                width: 90px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-header h1 {
+                font-size: 2em;
+            }
+            .detail-header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <header class="detail-header content-reveal">
+            <h1 class="title-reveal" id="sculpture-title">"Title of Sculpture"</h1>
+            <p class="text-reveal" id="sculpture-subtitle">Material, Year</p>
+        </header>
+
+        <section id="sculpture-detail-main" class="section-layer" data-speed="0.9">
+            <div class="container content-reveal">
+                <div class="sculpture-visuals">
+                    <div class="main-image-wrapper image-reveal">
+                        <img src="images/sculpture-detail-main.jpg" alt="Main view of sculpture" id="main-sculpture-image">
+                    </div>
+                    <div class="thumbnail-gallery">
+                        <img src="images/sculpture-detail-thumb-1.jpg" alt="Thumbnail 1" class="active" data-full-src="images/sculpture-detail-main.jpg">
+                        <img src="images/sculpture-detail-thumb-2.jpg" alt="Thumbnail 2" data-full-src="images/sculpture-detail-view-2.jpg">
+                        <img src="images/sculpture-detail-thumb-3.jpg" alt="Thumbnail 3" data-full-src="images/sculpture-detail-view-3.jpg">
+                        </div>
+                </div>
+
+                <div class="sculpture-details-content content-reveal delay-1">
+                    <div class="info-block">
+                        <h3>Details</h3>
+                        <p><strong>Medium:</strong> <span id="detail-medium">Bronze</span></p>
+                        <p><strong>Dimensions:</strong> <span id="detail-dimensions">120cm H x 50cm W x 30cm D</span></p>
+                        <p><strong>Year:</strong> <span id="detail-year">2024</span></p>
+                        <p><strong>Availability:</strong> <span id="detail-availability">Available for Acquisition</span></p>
+                    </div>
+                    <div class="description-block">
+                        <h3>About "Title of Sculpture"</h3>
+                        <p id="detail-description">
+                            This piece is a profound exploration of [theme]. Paul Brunton meticulously crafted this sculpture, pushing the boundaries of [material] to achieve [specific aesthetic quality, e.g., a fluid motion, a raw textured surface, a harmonious balance]. The interplay of light and shadow on its surfaces reveals new subtleties from every angle, inviting viewers to engage deeply with its form and narrative. This work represents a significant moment in Paul's artistic journey, encapsulating [mention unique aspects or inspiration].
+                        </p>
+                        <p>
+                            Interested in acquiring this piece or learning more?
+                            <a href="contact.html" class="button button-secondary">Inquire About This Sculpture</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="back-button content-reveal delay-2">
+                    <a href="portfolio.html" class="button">Back to Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        // Additional JS for sculpture-detail.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('main-sculpture-image');
+            const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    // Change main image source
+                    mainImage.src = this.dataset.fullSrc;
+                });
+            });
+
+            // Populate details based on URL parameter (simple example)
+            const urlParams = new URLSearchParams(window.location.search);
+            const sculptureId = urlParams.get('id');
+
+            // In a real application, you'd fetch data from an array/JSON based on sculptureId
+            const sculptureData = {
+                "sculpture-title-one": {
+                    title: "Ascension",
+                    subtitle: "Bronze, 2024",
+                    mainImage: "images/sculpture-detail-main.jpg",
+                    thumbnails: [
+                        { src: "images/sculpture-detail-main.jpg", fullSrc: "images/sculpture-detail-main.jpg" },
+                        { src: "images/sculpture-detail-thumb-2.jpg", fullSrc: "images/sculpture-detail-view-2.jpg" },
+                        { src: "images/sculpture-detail-thumb-3.jpg", fullSrc: "images/sculpture-detail-view-3.jpg" }
+                    ],
+                    medium: "Bronze",
+                    dimensions: "120cm H x 50cm W x 30cm D",
+                    year: "2024",
+                    availability: "Available for Acquisition",
+                    description: "This magnificent piece, 'Ascension,' captures the essence of upward movement and growth. Crafted from molten bronze, its elegant curves and textured surfaces reflect the natural world while pushing towards a more abstract, spiritual realm. The interplay of light and shadow on its form evokes a dynamic sense of fluidity, inviting viewers to experience its journey from ground to sky."
+                },
+                "sculpture-title-two": {
+                    title: "Terra Firma",
+                    subtitle: "Carved Stone, 2023",
+                    mainImage: "images/sculpture-portfolio-2-large.jpg", // Create this image
+                    thumbnails: [
+                        { src: "images/sculpture-portfolio-2-large.jpg", fullSrc: "images/sculpture-portfolio-2-large.jpg" },
+                        { src: "images/sculpture-portfolio-2-thumb-2.jpg", fullSrc: "images/sculpture-portfolio-2-view-2.jpg" } // Create these
+                    ],
+                    medium: "Carved Stone",
+                    dimensions: "80cm H x 60cm D",
+                    year: "2023",
+                    availability: "Sold (Private Collection)",
+                    description: "Terra Firma celebrates the enduring strength and quiet majesty of the earth. Sculpted from a single block of [type of stone, e.g., granite], its rugged texture and grounded form evoke ancient landscapes and primal forces. The subtle undulations invite touch, connecting the viewer to the raw essence of the material and the profound stability it represents."
+                }
+                // Add more sculpture data here matching IDs from portfolio.html
+            };
+
+            const data = sculptureData[sculptureId] || sculptureData["sculpture-title-one"]; // Fallback
+
+            document.getElementById('sculpture-title').textContent = `"${data.title}"`;
+            document.getElementById('sculpture-subtitle').textContent = data.subtitle;
+            document.getElementById('main-sculpture-image').src = data.mainImage;
+
+            // Clear existing thumbnails and add new ones
+            const thumbnailContainer = document.querySelector('.thumbnail-gallery');
+            thumbnailContainer.innerHTML = ''; // Clear existing
+            data.thumbnails.forEach((thumbData, index) => {
+                const img = document.createElement('img');
+                img.src = thumbData.src;
+                img.alt = `Thumbnail ${index + 1}`;
+                img.dataset.fullSrc = thumbData.fullSrc;
+                if (index === 0) {
+                    img.classList.add('active'); // First one active by default
+                }
+                thumbnailContainer.appendChild(img);
+            });
+
+            document.getElementById('detail-medium').textContent = data.medium;
+            document.getElementById('detail-dimensions').textContent = data.dimensions;
+            document.getElementById('detail-year').textContent = data.year;
+            document.getElementById('detail-availability').textContent = data.availability;
+            document.getElementById('detail-description').textContent = data.description;
+
+            // Re-attach event listeners for newly created thumbnails
+            document.querySelectorAll('.thumbnail-gallery img').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    document.querySelectorAll('.thumbnail-gallery img').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    mainImage.src = this.dataset.fullSrc;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
