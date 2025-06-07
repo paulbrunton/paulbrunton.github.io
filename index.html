@@ -3,390 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Brunton | New Zealand Sculptor</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #f8f8f8;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            padding: 40px 20px 20px;
-            text-align: center;
-        }
-        
-        .site-title {
-            font-size: 24px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin: 0 15px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            padding-bottom: 3px;
-            border-bottom: 1px solid transparent;
-        }
-        
-        nav a:hover {
-            border-bottom: 1px solid #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-        
-        .work-item {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        
-        .work-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .work-item:hover img {
-            transform: scale(1.03);
-        }
-        
-        .work-info {
-            padding: 10px 0;
-        }
-        
-        .work-info h3 {
-            font-weight: 400;
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        
-        .work-info p {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .about-section {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-        }
-        
-        .about-section p {
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-weight: 300;
-            letter-spacing: 1px;
-            margin: 60px 0 30px;
-            font-size: 24px;
-        }
-        
-        .featured-work {
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-            height: 500px;
-        }
-        
-        .featured-work img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        .featured-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .featured-overlay h2 {
-            font-weight: 300;
-            margin-bottom: 5px;
-        }
-        
-        .featured-overlay p {
-            font-size: 14px;
-        }
-        
-        .exhibitions-section {
-            max-width: 800px;
-            margin: 0 auto 60px;
-        }
-        
-        .exhibition-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .exhibition-item:last-child {
-            border-bottom: none;
-        }
-        
-        .exhibition-item h3 {
-            font-weight: 400;
-            margin-bottom: 5px;
-        }
-        
-        .exhibition-item p {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .exhibition-item .exhibition-date {
-            font-style: italic;
-        }
-        
-        .studio-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-        
-        .studio-images img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        footer {
-            border-top: 1px solid #eee;
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .social-links {
-            margin-bottom: 20px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            color: #333;
-            text-decoration: none;
-        }
-        
-        .contact-info {
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 5px 0;
-            }
-            
-            .featured-work {
-                height: 350px;
-            }
-            
-            .studio-images {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Paul Brunton Sculpture - Artistry in Form</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1 class="site-title">PAUL BRUNTON</h1>
-        <nav>
-            <ul>
-                <li><a href="#works">Works</a></li>
-                <li><a href="#exhibitions">Exhibitions</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#studio">Studio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <div class="featured-work">
-            <img src="/api/placeholder/1200/500" alt="Featured Sculpture by Paul Brunton">
-            <div class="featured-overlay">
-                <h2>Temporal Fragments</h2>
-                <p>Bronze and steel, 180 × 120 × 90 cm, 2024</p>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <section id="hero" class="hero-section section-layer" data-speed="0.5">
+            <div class="hero-content">
+                <h1 class="fade-in">Paul Brunton Sculpture</h1>
+                <p class="fade-in delay-1">Where Vision Takes Form</p>
+                <a href="portfolio.html" class="button fade-in delay-2">Explore the Collection</a>
             </div>
-        </div>
-        
-        <div class="container">
-            <section id="works">
-                <h2 class="section-title">Selected Works</h2>
-                <div class="works-grid">
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Emergence</h3>
-                            <p>Limestone, 45 × 30 × 25 cm, 2023</p>
-                        </div>
+            <div class="hero-overlay"></div> </section>
+
+        <section id="intro" class="intro-section section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">About the Artistry</h2>
+                <div class="intro-grid">
+                    <div class="text-block">
+                        <p>Paul Brunton crafts compelling sculptural forms that speak to the raw beauty of material and the profound depth of human experience. His work transcends conventional boundaries, inviting contemplation and dialogue.</p>
+                        <p>Each piece is a journey, transforming the rigid into the fluid, the abstract into the tangible. Explore the evolution of form and the stories embedded within bronze, stone, and steel.</p>
+                        <a href="about.html" class="button button-secondary">Learn More About Paul</a>
                     </div>
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Coastal Rhythm</h3>
-                            <p>Bronze, 60 × 40 × 35 cm, 2023</p>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Tectonic Shift</h3>
-                            <p>Marble and steel, 75 × 50 × 40 cm, 2022</p>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Indigenous Memory</h3>
-                            <p>Native timber and copper, 90 × 45 × 45 cm, 2022</p>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Māori Lineage</h3>
-                            <p>Pounamu (New Zealand jade) and kauri, 30 × 20 × 15 cm, 2021</p>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <img src="/api/placeholder/300/400" alt="Sculpture by Paul Brunton">
-                        <div class="work-info">
-                            <h3>Pacific Convergence</h3>
-                            <p>Basalt and glass, 120 × 80 × 60 cm, 2021</p>
-                        </div>
+                    <div class="image-block">
+                        <img src="images/sculpture-intro-1.jpg" alt="Abstract sculpture piece" class="image-reveal">
                     </div>
                 </div>
-            </section>
-            
-            <section id="exhibitions">
-                <h2 class="section-title">Exhibitions</h2>
-                <div class="exhibitions-section">
-                    <div class="exhibition-item">
-                        <h3>Form and Native Identity</h3>
-                        <p class="exhibition-date">June - August 2024</p>
-                        <p>Auckland Art Gallery Toi o Tāmaki, Auckland, New Zealand</p>
+            </div>
+        </section>
+
+        <section id="featured-works" class="featured-works-section section-layer" data-speed="1.2">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">Featured Creations</h2>
+                <div class="featured-gallery">
+                    <div class="featured-item item-reveal">
+                        <a href="sculpture-detail.html?id=sculpture-alpha">
+                            <img src="images/featured-sculpture-1.jpg" alt="Featured Sculpture Alpha">
+                            <div class="caption">"Ascension"</div>
+                        </a>
                     </div>
-                    <div class="exhibition-item">
-                        <h3>Contemporary New Zealand Sculptors</h3>
-                        <p class="exhibition-date">March - May 2023</p>
-                        <p>Te Papa Tongarewa Museum of New Zealand, Wellington, New Zealand</p>
+                    <div class="featured-item item-reveal delay-1">
+                        <a href="sculpture-detail.html?id=sculpture-beta">
+                            <img src="images/featured-sculpture-2.jpg" alt="Featured Sculpture Beta">
+                            <div class="caption">"Terra Firma"</div>
+                        </a>
                     </div>
-                    <div class="exhibition-item">
-                        <h3>Pacific Materiality</h3>
-                        <p class="exhibition-date">September - November 2022</p>
-                        <p>Christchurch Art Gallery Te Puna o Waiwhetū, Christchurch, New Zealand</p>
-                    </div>
-                    <div class="exhibition-item">
-                        <h3>Sculptural Dialogues</h3>
-                        <p class="exhibition-date">February - April 2022</p>
-                        <p>Govett-Brewster Art Gallery, New Plymouth, New Zealand</p>
-                    </div>
-                    <div class="exhibition-item">
-                        <h3>Southern Hemisphere Perspectives</h3>
-                        <p class="exhibition-date">July - October 2021</p>
-                        <p>National Gallery of Australia, Canberra, Australia</p>
+                    <div class="featured-item item-reveal delay-2">
+                        <a href="sculpture-detail.html?id=sculpture-gamma">
+                            <img src="images/featured-sculpture-3.jpg" alt="Featured Sculpture Gamma">
+                            <div class="caption">"Whispers of Stone"</div>
+                        </a>
                     </div>
                 </div>
-            </section>
-            
-            <section id="about">
-                <h2 class="section-title">About</h2>
-                <div class="about-section">
-                    <p>Paul Brunton is a contemporary New Zealand sculptor whose work explores the intersection of cultural identity, environmental concerns, and the geological history of Aotearoa New Zealand. Working primarily with stone, bronze, wood, and found materials, Brunton creates pieces that reflect both the natural landscape and the cultural narratives of his homeland.</p>
-                    <p>Born in Wellington in 1975, Brunton studied at Elam School of Fine Arts at the University of Auckland, graduating with honors in 1998. His early works showed a strong interest in Māori and Pacific artistic traditions, which he has continued to incorporate into his practice, always with deep respect and cultural sensitivity.</p>
-                    <p>Brunton's sculptures often feature a distinctive combination of polished and rough-hewn surfaces, creating a dialogue between the refined and the raw. His use of native materials—pounamu (New Zealand jade), kauri wood, and local stone—connects his work to the specific geography and cultural context of New Zealand while addressing universal themes of human relationship to place and history.</p>
-                    <p>His sculptures are held in major public and private collections throughout New Zealand, Australia, and internationally. Brunton currently works from his studio in the Waitakere Ranges near Auckland, where the dramatic landscape directly influences his artistic practice.</p>
+                <div class="center-button content-reveal delay-3">
+                    <a href="portfolio.html" class="button">View All Works</a>
                 </div>
-            </section>
-            
-            <section id="studio">
-                <h2 class="section-title">Studio</h2>
-                <div class="studio-images">
-                    <img src="/api/placeholder/580/300" alt="Paul Brunton's studio">
-                    <img src="/api/placeholder/580/300" alt="Paul Brunton at work">
+            </div>
+        </section>
+
+        <section id="cta" class="cta-section section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">Begin Your Collection</h2>
+                <p class="text-reveal">Paul Brunton welcomes inquiries for commissions, acquisitions, and collaborations. Connect directly to discuss your vision.</p>
+                <a href="contact.html" class="button button-contact">Contact Paul</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
                 </div>
-                <div class="about-section">
-                    <p>Situated in the lush Waitakere Ranges west of Auckland, Paul Brunton's studio is a converted timber barn that provides both indoor and outdoor workspace for his sculptural practice. The studio environment reflects Brunton's dedication to sustainable practices, with natural lighting, rainwater collection systems, and solar power.</p>
-                    <p>The surrounding native bush and proximity to the rugged west coast beaches provide constant inspiration for his work, with many of his materials sourced from the local environment in collaboration with conservation authorities.</p>
-                </div>
-            </section>
-            
-            <section id="contact">
-                <h2 class="section-title">Contact</h2>
-                <div class="about-section">
-                    <div class="contact-info" style="text-align:center;">
-                        <p>For inquiries about commissions, exhibitions, or studio visits:</p>
-                        <p>Email: info@paulbrunton.co.nz</p>
-                        <p>Tel: +64 21 XXX XXX</p>
-                        <p>Representation: Auckland Fine Arts Gallery, Auckland, New Zealand</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="social-links">
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">LinkedIn</a>
-        </div>
-        <p>© 2025 Paul Brunton. All rights reserved.</p>
-    </footer>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
 </body>
 </html>
