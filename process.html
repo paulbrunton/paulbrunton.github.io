@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sculptural Process - Paul Brunton Sculpture</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for process.html */
+        .process-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            font-size: 1.15em;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Number + text, then image */
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transform: translateY(50px); /* For JS reveal */
+            opacity: 0; /* For JS reveal */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .process-step.active { /* Added by JS */
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .process-step:nth-child(odd) {
+            grid-template-areas: "number text" "image image"; /* Number above text on small screen */
+            /* Standard for large: image right */
+        }
+        .process-step:nth-child(even) {
+            grid-template-areas: "number text" "image image"; /* Number above text on small screen */
+            /* Standard for large: image left */
+            direction: rtl; /* Flip content order */
+        }
+
+        .process-step .step-number {
+            font-family: var(--font-heading);
+            font-size: 4em;
+            color: var(--color-accent);
+            text-align: center;
+            line-height: 1;
+            grid-area: number;
+        }
+
+        .process-step .step-content {
+            grid-area: text;
+            direction: ltr; /* Reset text direction for content */
+        }
+
+        .process-step .step-content h3 {
+            font-size: 2em;
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+
+        .process-step .step-image {
+            grid-area: image;
+            direction: ltr; /* Reset image direction for image */
+            text-align: center;
+        }
+
+        .process-step .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .process-step {
+                grid-template-columns: 1fr;
+                grid-template-areas: "number" "text" "image";
+                direction: ltr; /* Force LTR on small screens */
+                padding: 30px;
+            }
+            .process-step .step-number {
+                margin-bottom: 20px;
+            }
+            .process-step:nth-child(even) {
+                direction: ltr; /* Ensure consistent layout on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <section id="process-main" class="section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">The Sculptural Journey</h2>
+                <p class="process-intro text-reveal">
+                    Every sculpture by Paul Brunton embarks on a meticulous journey from raw concept to finished form. It's a dialogue between intuition and technique, material and vision. Here's a glimpse into the creative process:
+                </p>
+
+                <div class="process-step content-reveal">
+                    <div class="step-number text-reveal">01</div>
+                    <div class="step-content text-reveal delay-1">
+                        <h3>Conception & Sketching</h3>
+                        <p>
+                            The journey begins with an idea, often sparked by a found object, a natural form, or a philosophical concept. Paul translates these initial inspirations into detailed sketches, exploring contours, mass, and potential movement. This is where the abstract vision starts to take a tangible shape on paper.
+                        </p>
+                    </div>
+                    <div class="step-image image-reveal delay-2">
+                        <img src="images/process-sketch.jpg" alt="Sketches of sculpture ideas">
+                    </div>
+                </div>
+
+                <div class="process-step content-reveal delay-1">
+                    <div class="step-number text-reveal">02</div>
+                    <div class="step-content text-reveal delay-1">
+                        <h3>Material Selection & Preparation</h3>
+                        <p>
+                            Choosing the right material is crucial. Whether it's selecting a rough block of marble, sourcing specific alloys for bronze casting, or finding unique pieces of reclaimed timber, the material itself often dictates the final form. Preparation involves cutting, shaping, and sometimes treating the raw material to begin the sculpting process.
+                        </p>
+                    </div>
+                    <div class="step-image image-reveal delay-2">
+                        <img src="images/process-material.jpg" alt="Raw stone material in studio">
+                    </div>
+                </div>
+
+                <div class="process-step content-reveal delay-2">
+                    <div class="step-number text-reveal">03</div>
+                    <div class="step-content text-reveal delay-1">
+                        <h3>Shaping & Refinement</h3>
+                        <p>
+                            This is the heart of the sculptural process. Using a combination of traditional tools and modern techniques, Paul meticulously carves, welds, casts, or constructs the piece. It's a highly iterative phase, where the form is slowly revealed, refined, and often re-imagined. Attention is paid to every curve, angle, and texture to achieve the desired emotional and visual impact.
+                        </p>
+                    </div>
+                    <div class="step-image image-reveal delay-2">
+                        <img src="images/process-shaping.jpg" alt="Sculptor shaping a metal piece">
+                    </div>
+                </div>
+
+                <div class="process-step content-reveal delay-3">
+                    <div class="step-number text-reveal">04</div>
+                    <div class="step-content text-reveal delay-1">
+                        <h3>Finishing & Patination</h3>
+                        <p>
+                            The final stages involve polishing, sanding, and applying various finishes. For bronze, this often means applying a patina—a chemical treatment that reacts with the metal to create rich colors and textures, enhancing the sculpture's character. This process is crucial in giving the piece its unique surface narrative and protecting it for longevity.
+                        </p>
+                    </div>
+                    <div class="step-image image-reveal delay-2">
+                        <img src="images/process-patina.jpg" alt="Applying patina to bronze sculpture">
+                    </div>
+                </div>
+
+                <div class="center-button content-reveal delay-3">
+                    <a href="portfolio.html" class="button">See the Finished Works</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        // Additional JS for process page (if needed, default reveals handled by general script.js)
+        // No specific additional JS needed for this simple layout, as general script.js handles content-reveal
+    </script>
+</body>
+</html>
