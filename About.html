@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Paul Brunton - Sculpture Artist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for about.html */
+        .about-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .about-intro img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--color-accent);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            transform: translateY(20px); /* For JS reveal */
+            opacity: 0; /* For JS reveal */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .about-intro img.active { /* Added by JS */
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .about-section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-section-content .text-block {
+            padding: 20px;
+        }
+
+        .about-section-content .image-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-section-content:nth-child(even) .text-block {
+            order: 2; /* Text on right for even sections */
+        }
+        .about-section-content:nth-child(even) .image-block {
+            order: 1; /* Image on left for even sections */
+        }
+
+        @media (max-width: 768px) {
+            .about-section-content {
+                grid-template-columns: 1fr;
+            }
+            .about-section-content .text-block {
+                order: unset !important; /* Reset order on small screens */
+            }
+            .about-section-content .image-block {
+                order: unset !important; /* Reset order on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <section id="about-main" class="section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">About Paul Brunton</h2>
+                <div class="about-intro">
+                    <img src="images/paul-brunton-profile.jpg" alt="Paul Brunton Profile" class="image-reveal">
+                    <p class="text-reveal" style="max-width: 800px; margin: 0 auto;">
+                        Paul Brunton is a visionary sculptor whose hands transform raw materials into profound expressions of form and emotion. With an innate understanding of space, light, and texture, he creates pieces that resonate with both intellectual depth and aesthetic beauty.
+                    </p>
+                </div>
+
+                <div class="about-section-content content-reveal">
+                    <div class="text-block text-reveal">
+                        <h3>The Journey & Philosophy</h3>
+                        <p>
+                            Born and raised in [City, Country], Paul's fascination with three-dimensional art began early, leading him to formal studies at [Art School/University, if applicable]. His early works explored [mention early themes/materials], gradually evolving into the distinctive style seen today. Paul believes that sculpture is a dialogue between the artist, the material, and the observer, a conversation that unveils hidden truths and invites new perspectives.
+                        </p>
+                        <p>
+                            His philosophy centers on the idea of discovery—not just of the form within the material, but of the emotions and narratives that emerge during the creative process.
+                        </p>
+                    </div>
+                    <div class="image-block image-reveal delay-1">
+                        <img src="images/about-studio-1.jpg" alt="Paul Brunton working in studio">
+                    </div>
+                </div>
+
+                <div class="about-section-content content-reveal delay-1" style="margin-top: 80px;">
+                    <div class="text-block text-reveal">
+                        <h3>Inspiration & Materials</h3>
+                        <p>
+                            Paul draws inspiration from a diverse range of sources, including natural landscapes, ancient architecture, philosophical concepts, and the resilience of the human spirit. He is renowned for his mastery across various mediums, predominantly working with [mention primary materials, e.g., bronze, granite, reclaimed steel, patinated copper].
+                        </p>
+                        <p>
+                            His experimentation with different textures, finishes, and patinas is crucial to his process, allowing each material to tell its own story and to embody the intended emotional weight of the piece.
+                        </p>
+                    </div>
+                    <div class="image-block image-reveal delay-2">
+                        <img src="images/about-materials-2.jpg" alt="Close-up of sculptural material">
+                    </div>
+                </div>
+
+                <div class="center-button content-reveal delay-2">
+                    <a href="contact.html" class="button">Connect with Paul</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        // Additional JS for about page (if needed, default reveals handled by general script.js)
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileImage = document.querySelector('.about-intro img');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        profileImage.classList.add('active');
+                        observer.unobserve(profileImage);
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(profileImage);
+        });
+    </script>
+</body>
+</html>
