@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Paul Brunton Sculpture</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for contact.html */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-info {
+            line-height: 2;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .contact-info a {
+            font-weight: bold;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 25px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--color-primary);
+            font-family: var(--font-alt);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: var(--font-body);
+            box-sizing: border-box; /* Include padding in width */
+            background-color: var(--color-light-bg);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--color-accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 160, 82, 45), 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .social-links-contact {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .social-links-contact a {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .social-links-contact img {
+            width: 45px;
+            height: 45px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .social-links-contact img:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <section id="contact-main" class="section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">Connect with Paul</h2>
+                <p class="text-reveal" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">
+                    Whether you're interested in a commission, acquiring an existing piece, or simply wish to discuss his work, Paul Brunton welcomes your inquiries.
+                </p>
+
+                <div class="contact-content content-reveal delay-1">
+                    <div class="contact-info text-reveal">
+                        <h3>Direct Inquiries</h3>
+                        <p>
+                            For all direct inquiries, project proposals, and acquisition details, please reach out via:
+                        </p>
+                        <p>
+                            <strong>Email:</strong> <a href="mailto:paul.brunton.sculpture@example.com">paul.brunton.sculpture@example.com</a><br>
+                            <strong>Phone:</strong> <a href="tel:+64211234567">+64 21 123 4567</a> (New Zealand)
+                        </p>
+                        <p>
+                            Paul aims to respond to all messages within 2-3 business days.
+                        </p>
+                        <p>
+                            <strong>Studio Location:</strong><br>
+                            [Your Studio Address Line 1]<br>
+                            [Your Studio Address Line 2]<br>
+                            [City, Postcode, Country]
+                        </p>
+                    </div>
+                    <div class="contact-form text-reveal delay-2">
+                        <h3>Send a Message</h3>
+                        <form action="submit_form.php" method="POST"> <div class="form-group">
+                                <label for="name">Your Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject:</label>
+                                <input type="text" id="subject" name="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message:</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="button button-contact">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="social-links-contact content-reveal delay-2">
+                    <h3>Follow Paul's Journey</h3>
+                    <a href="https://www.instagram.com/paulbruntonsculpture" target="_blank" aria-label="Instagram"><img src="images/icon-instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/paulbruntonsculpture" target="_blank" aria-label="Facebook"><img src="images/icon-facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/in/paulbrunton" target="_blank" aria-label="LinkedIn"><img src="images/icon-linkedin.png" alt="LinkedIn"></a>
+                    </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        // Additional JS for contact form (client-side only for this example)
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('.contact-form form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Prevent default browser submission
+
+                    // In a real scenario, you'd send this data to a server-side script
+                    // using fetch() or XMLHttpRequest. Example:
+                    /*
+                    fetch('submit_form.php', {
+                        method: 'POST',
+                        body: new FormData(e.target)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Thank you for your message! Paul will get back to you shortly.');
+                            contactForm.reset();
+                        } else {
+                            alert('There was an error sending your message: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('A network error occurred. Please try again later.');
+                    });
+                    */
+
+                    // For now, just a client-side alert:
+                    alert('Thank you for your message! Paul Brunton will get back to you shortly.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
