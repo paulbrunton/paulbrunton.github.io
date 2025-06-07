@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Brunton Sculpture - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for portfolio.html */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* For JS reveal */
+            transform: translateY(30px); /* For JS reveal */
+        }
+
+        .portfolio-item.active { /* Added by JS */
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* Specific delays for items to appear staggered */
+        .portfolio-item:nth-child(even) { transition-delay: 0.1s; }
+        .portfolio-item:nth-child(3n) { transition-delay: 0.2s; }
+        .portfolio-item:nth-child(5n) { transition-delay: 0.3s; }
+
+
+        .portfolio-item img {
+            width: 100%;
+            height: 380px; /* Consistent height */
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-item .info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .portfolio-item .info h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .portfolio-item .info p {
+            font-size: 0.95em;
+            color: var(--color-secondary);
+            margin-bottom: 0;
+        }
+
+        .portfolio-item .overlay-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(var(--color-accent-rgb, 160, 82, 45), 0.7); /* Using RGB for opacity */
+            color: var(--color-text-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline */
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .portfolio-item:hover .overlay-link {
+            opacity: 1;
+        }
+
+        .overlay-link span {
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .overlay-link span {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Adjust colors slightly if accent-rgb is needed for opacity */
+        :root {
+            --color-accent-rgb: 160, 82, 45; /* R, G, B values for Sienna */
+        }
+    </style>
+</head>
+<body>
+
+    <button id="nav-toggle" aria-label="Toggle navigation menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="hidden">
+        <ul>
+            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
+            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
+            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-wrapper">
+        <section id="portfolio-main" class="section-layer" data-speed="0.8">
+            <div class="container content-reveal">
+                <h2 class="title-reveal">The Collection</h2>
+                <p class="text-reveal" style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+                    Each sculpture in this collection is a testament to the journey of raw material transformed into expressive form. Click on any piece to delve into its individual story.
+                </p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="images/sculpture-portfolio-1.jpg" alt="Sculpture Title One">
+                        <div class="info">
+                            <h3>Sculpture Title One</h3>
+                            <p>Bronze, 2024</p>
+                            <p>120cm H x 50cm W</p>
+                        </div>
+                        <a href="sculpture-detail.html?id=sculpture-title-one" class="overlay-link">
+                            <span>View Details</span>
+                        </a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <img src="images/sculpture-portfolio-2.jpg" alt="Sculpture Title Two">
+                        <div class="info">
+                            <h3>Sculpture Title Two</h3>
+                            <p>Stone, 2023</p>
+                            <p>80cm H x 60cm D</p>
+                        </div>
+                        <a href="sculpture-detail.html?id=sculpture-title-two" class="overlay-link">
+                            <span>View Details</span>
+                        </a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <img src="images/sculpture-portfolio-3.jpg" alt="Sculpture Title Three">
+                        <div class="info">
+                            <h3>Sculpture Title Three</h3>
+                            <p>Steel, 2024</p>
+                            <p>180cm H x 90cm W</p>
+                        </div>
+                        <a href="sculpture-detail.html?id=sculpture-title-three" class="overlay-link">
+                            <span>View Details</span>
+                        </a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <img src="images/sculpture-portfolio-4.jpg" alt="Sculpture Title Four">
+                        <div class="info">
+                            <h3>Sculpture Title Four</h3>
+                            <p>Mixed Media, 2022</p>
+                            <p>70cm H x 40cm D</p>
+                        </div>
+                        <a href="sculpture-detail.html?id=sculpture-title-four" class="overlay-link">
+                            <span>View Details</span>
+                        </a>
+                    </div>
+
+                    </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        // Additional JS for portfolio page reveals
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const portfolioObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Optional: animate only once
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            portfolioItems.forEach(item => {
+                portfolioObserver.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
