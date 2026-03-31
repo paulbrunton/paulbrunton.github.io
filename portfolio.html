@@ -132,17 +132,29 @@
                     Each sculpture in this collection is a testament to the journey of raw material transformed into expressive form. Click on any piece to delve into its individual story.
                 </p>
 
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="images/sculpture-portfolio-1.jpg" alt="Sculpture Title One">
-                        <div class="info">
-                            <h3>Sculpture Title One</h3>
-                            <p>Bronze, 2024</p>
-                            <p>120cm H x 50cm W</p>
-                        </div>
-                        <a href="sculpture-detail.html?id=sculpture-title-one" class="overlay-link">
-                            <span>View Details</span>
-                        </a>
+               <div class="portfolio-grid" id="gallery"></div>
+
+<script>
+    const gallery = document.getElementById('gallery');
+    const imageCount = 10; // Change this to the number of images you have
+    const folderPath = 'Images/';
+
+    for (let i = 1; i <= imageCount; i++) {
+        const item = document.createElement('div');
+        item.className = 'portfolio-item';
+        // This assumes files are named sculpture1.jpg, sculpture2.jpg, etc.
+        item.innerHTML = `
+            <img src="${folderPath}sculpture${i}.jpg" alt="Sculpture ${i}">
+            <div class="info">
+                <h3>Sculpture ${i}</h3>
+                <p>Bronze, 2024</p>
+            </div>
+            <a href="#" class="overlay-link"><span>View Details</span></a>
+        `;
+        gallery.appendChild(item);
+    }
+</script>
+
                     </div>
 
                     <div class="portfolio-item">
