@@ -1,235 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Brunton Sculpture - Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Specific styles for portfolio.html */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            margin-top: 50px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Works — Paul Brunton Sculpture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:#0a0908;--deep:#111009;--charcoal:#1c1a17;--iron:#2e2b26;
+      --ash:#4a4640;--stone:#7a7268;--silver:#b8b0a4;--cream:#e8e0d4;
+      --warm:#f2ebe0;--gold:#c8a96e;--bronze:#8a6838;--rust:#6e3c1e;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --display:'Cinzel',serif;--sans:'Jost',sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans);background:var(--black);color:var(--cream);overflow-x:hidden;cursor:none; }
+    body::before {
+      content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size:200px;
+    }
+    .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+    .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,169,110,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease,width 0.3s,height 0.3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.8rem 5rem;transition:background 0.4s,padding 0.4s;}
+    nav.scrolled{background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);padding:1.2rem 5rem;border-bottom:1px solid rgba(200,169,110,0.1);}
+    .nav-logo{font-family:var(--display);font-size:1rem;font-weight:300;letter-spacing:0.25em;color:var(--cream);text-decoration:none;text-transform:uppercase;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:3rem;list-style:none;}
+    .nav-links a{font-family:var(--sans);font-size:0.6rem;font-weight:300;text-transform:uppercase;letter-spacing:0.25em;color:var(--stone);text-decoration:none;position:relative;transition:color 0.3s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+    .nav-links a:hover{color:var(--cream);}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+    .nav-links a.active{color:var(--cream);}
 
-        .portfolio-item {
-            position: relative;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0; /* For JS reveal */
-            transform: translateY(30px); /* For JS reveal */
-        }
+    /* PAGE HEADER */
+    .page-header{padding:18rem 5rem 8rem;background:var(--black);position:relative;overflow:hidden;}
+    .page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(110,60,30,0.1) 0%,transparent 60%);pointer-events:none;}
+    .page-header-inner{max-width:1400px;margin:0 auto;}
+    .section-label{display:flex;align-items:center;gap:1.5rem;font-family:var(--display);font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+    .section-label::before{content:'';display:block;width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+    .page-title{font-family:var(--serif);font-size:clamp(4rem,8vw,8rem);font-weight:300;line-height:0.95;color:var(--warm);}
+    .page-title em{font-style:italic;color:var(--gold);}
+    .page-sub{font-size:0.8rem;font-weight:200;line-height:2;color:var(--stone);max-width:500px;letter-spacing:0.08em;margin-top:2rem;}
 
-        .portfolio-item.active { /* Added by JS */
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+    /* FILTER */
+    .filter-bar{padding:3rem 5rem;background:var(--deep);border-bottom:1px solid rgba(255,255,255,0.04);}
+    .filter-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+    .filter-label{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--ash);margin-right:1rem;}
+    .filter-btn{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.6rem 1.5rem;background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--stone);cursor:none;transition:all 0.3s;}
+    .filter-btn:hover,.filter-btn.active{background:rgba(200,169,110,0.1);border-color:var(--gold);color:var(--gold);}
 
-        /* Specific delays for items to appear staggered */
-        .portfolio-item:nth-child(even) { transition-delay: 0.1s; }
-        .portfolio-item:nth-child(3n) { transition-delay: 0.2s; }
-        .portfolio-item:nth-child(5n) { transition-delay: 0.3s; }
+    /* GALLERY GRID */
+    .gallery-section{padding:6rem 5rem 10rem;background:var(--black);}
+    .gallery-inner{max-width:1400px;margin:0 auto;}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+    .gallery-item{position:relative;overflow:hidden;background:var(--charcoal);cursor:none;}
+    .gallery-item.large{grid-column:span 2;}
+    .gallery-item.tall{grid-row:span 2;}
+    .gallery-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(145deg,#2e2b26,#1c1a17);display:flex;align-items:center;justify-content:center;transition:background 0.5s;}
+    .gallery-item.large .gallery-placeholder{aspect-ratio:16/7;}
+    .gallery-item.tall .gallery-placeholder{aspect-ratio:auto;min-height:600px;}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(25%) contrast(1.05);transition:transform 0.7s ease,filter 0.5s;}
+    .gallery-item:hover img{transform:scale(1.05);filter:grayscale(0%) contrast(1.1);}
+    .gallery-item:hover .gallery-placeholder{background:linear-gradient(145deg,#3e3730,#2a2520);}
+    .gallery-placeholder span{font-family:var(--serif);font-style:italic;color:rgba(184,176,164,0.15);font-size:0.8rem;letter-spacing:0.1em;}
+    .gallery-overlay{position:absolute;bottom:0;left:0;right:0;padding:3rem 2rem 2rem;background:linear-gradient(to top,rgba(10,9,8,0.92) 0%,transparent 100%);transform:translateY(80%);transition:transform 0.4s ease;}
+    .gallery-item:hover .gallery-overlay{transform:translateY(0);}
+    .gallery-title{font-family:var(--serif);font-size:1.4rem;font-style:italic;font-weight:300;color:var(--warm);margin-bottom:0.3rem;}
+    .gallery-meta{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+    .gallery-desc{font-size:0.68rem;font-weight:200;color:var(--stone);margin-top:0.6rem;line-height:1.7;letter-spacing:0.04em;}
 
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.15s;}
+    .reveal-delay-2{transition-delay:0.3s;}
+    .reveal-delay-3{transition-delay:0.45s;}
 
-        .portfolio-item img {
-            width: 100%;
-            height: 380px; /* Consistent height */
-            object-fit: cover;
-            display: block;
-        }
+    /* CTA */
+    .page-cta{padding:10rem 5rem;background:var(--charcoal);text-align:center;position:relative;overflow:hidden;}
+    .page-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(138,104,56,0.08) 0%,transparent 70%);pointer-events:none;}
+    .cta-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:var(--warm);line-height:1.05;margin-bottom:1.5rem;}
+    .cta-title em{font-style:italic;color:var(--gold);}
+    .cta-sub{font-size:0.78rem;font-weight:200;line-height:2;color:var(--stone);max-width:460px;margin:0 auto 3.5rem;letter-spacing:0.08em;}
+    .btn-primary{font-family:var(--display);font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;padding:1.1rem 3rem;background:var(--gold);color:var(--black);border:none;cursor:none;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.2s,letter-spacing 0.3s;}
+    .btn-primary:hover{background:var(--cream);transform:translateY(-2px);letter-spacing:0.4em;}
 
-        .portfolio-item .info {
-            padding: 25px;
-            text-align: center;
-        }
+    /* FOOTER */
+    footer{background:var(--deep);border-top:1px solid rgba(200,169,110,0.08);padding:4rem 5rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;}
+    .footer-logo{font-family:var(--display);font-size:0.9rem;letter-spacing:0.25em;color:var(--ash);text-transform:uppercase;}
+    .footer-logo span{color:var(--bronze);}
+    .footer-copy{font-size:0.6rem;letter-spacing:0.1em;color:var(--iron);}
+    .footer-links{display:flex;gap:2rem;}
+    .footer-links a{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color 0.3s;}
+    .footer-links a:hover{color:var(--silver);}
 
-        .portfolio-item .info h3 {
-            font-size: 1.6em;
-            margin-bottom: 10px;
-            color: var(--color-primary);
-        }
-
-        .portfolio-item .info p {
-            font-size: 0.95em;
-            color: var(--color-secondary);
-            margin-bottom: 0;
-        }
-
-        .portfolio-item .overlay-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(var(--color-accent-rgb, 160, 82, 45), 0.7); /* Using RGB for opacity */
-            color: var(--color-text-light);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-            text-decoration: none; /* Remove underline */
-            font-family: var(--font-heading);
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .portfolio-item:hover .overlay-link {
-            opacity: 1;
-        }
-
-        .overlay-link span {
-            transform: translateY(10px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .portfolio-item:hover .overlay-link span {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Adjust colors slightly if accent-rgb is needed for opacity */
-        :root {
-            --color-accent-rgb: 160, 82, 45; /* R, G, B values for Sienna */
-        }
-    </style>
+    @media(max-width:1024px){
+      nav{padding:1.5rem 2.5rem;}nav.scrolled{padding:1rem 2.5rem;}
+      .nav-links{display:none;}
+      .page-header,.filter-bar,.gallery-section,.page-cta{padding-left:2.5rem;padding-right:2.5rem;}
+      .gallery-grid{grid-template-columns:1fr 1fr;}
+      .gallery-item.large,.gallery-item.tall{grid-column:auto;grid-row:auto;}
+      footer{padding:3rem 2.5rem;}.footer-inner{flex-direction:column;gap:1.5rem;text-align:center;}
+    }
+    @media(max-width:600px){
+      .page-title{font-size:3.5rem;}
+      .gallery-grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-    <button id="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Paul <span>Brunton</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html" class="active">Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav id="main-nav" class="hidden">
-        <ul>
-            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
-            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
-            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
-            <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
-            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="site-wrapper">
-        <section id="portfolio-main" class="section-layer" data-speed="0.8">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">The Collection</h2>
-                <p class="text-reveal" style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                    Each sculpture in this collection is a testament to the journey of raw material transformed into expressive form. Click on any piece to delve into its individual story.
-                </p>
-
-               <div class="portfolio-grid" id="gallery"></div>
-
-<script>
-    const gallery = document.getElementById('gallery');
-    const imageCount = 10; // Change this to the number of images you have
-    const folderPath = 'Images/';
-
-    for (let i = 1; i <= imageCount; i++) {
-        const item = document.createElement('div');
-        item.className = 'portfolio-item';
-        // This assumes files are named sculpture1.jpg, sculpture2.jpg, etc.
-        item.innerHTML = `
-            <img src="${folderPath}sculpture${i}.jpg" alt="Sculpture ${i}">
-            <div class="info">
-                <h3>Sculpture ${i}</h3>
-                <p>Bronze, 2024</p>
-            </div>
-            <a href="#" class="overlay-link"><span>View Details</span></a>
-        `;
-        gallery.appendChild(item);
-    }
-</script>
-
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="images/sculpture-portfolio-2.jpg" alt="Sculpture Title Two">
-                        <div class="info">
-                            <h3>Sculpture Title Two</h3>
-                            <p>Stone, 2023</p>
-                            <p>80cm H x 60cm D</p>
-                        </div>
-                        <a href="sculpture-detail.html?id=sculpture-title-two" class="overlay-link">
-                            <span>View Details</span>
-                        </a>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="images/sculpture-portfolio-3.jpg" alt="Sculpture Title Three">
-                        <div class="info">
-                            <h3>Sculpture Title Three</h3>
-                            <p>Steel, 2024</p>
-                            <p>180cm H x 90cm W</p>
-                        </div>
-                        <a href="sculpture-detail.html?id=sculpture-title-three" class="overlay-link">
-                            <span>View Details</span>
-                        </a>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="images/sculpture-portfolio-4.jpg" alt="Sculpture Title Four">
-                        <div class="info">
-                            <h3>Sculpture Title Four</h3>
-                            <p>Mixed Media, 2022</p>
-                            <p>70cm H x 40cm D</p>
-                        </div>
-                        <a href="sculpture-detail.html?id=sculpture-title-four" class="overlay-link">
-                            <span>View Details</span>
-                        </a>
-                    </div>
-
-                    </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
-            </div>
-        </footer>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">Portfolio</div>
+      <h1 class="page-title">The<br><em>Works</em></h1>
+      <p class="page-sub">A body of work built across decades — in bronze, stone, and steel. Each piece is documented here with medium, year, and dimensions where available.</p>
     </div>
+  </div>
 
-    <script src="js/script.js" defer></script>
-    <script>
-        // Additional JS for portfolio page reveals
-        document.addEventListener('DOMContentLoaded', function() {
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-            const portfolioObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Optional: animate only once
-                    }
-                });
-            }, {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            });
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <span class="filter-label">Filter by</span>
+      <button class="filter-btn active" data-filter="all">All Works</button>
+      <button class="filter-btn" data-filter="bronze">Bronze</button>
+      <button class="filter-btn" data-filter="stone">Stone</button>
+      <button class="filter-btn" data-filter="steel">Steel</button>
+      <button class="filter-btn" data-filter="commission">Commission</button>
+    </div>
+  </div>
 
-            portfolioItems.forEach(item => {
-                portfolioObserver.observe(item);
-            });
+  <section class="gallery-section">
+    <div class="gallery-inner">
+      <div class="gallery-grid">
+
+        <div class="gallery-item tall reveal" data-category="bronze">
+          <div class="gallery-placeholder"><span>Ascension — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Ascension"</div>
+            <div class="gallery-meta">Bronze · 2023 · H 1.4m</div>
+            <div class="gallery-desc">Cast bronze. A vertical form reaching upward — neither figure nor abstraction, but the space between.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1" data-category="stone">
+          <div class="gallery-placeholder"><span>Terra Firma — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Terra Firma"</div>
+            <div class="gallery-meta">Limestone · 2022 · H 0.8m</div>
+            <div class="gallery-desc">Direct-carved limestone. Low and grounded, anchored to the earth it came from.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-category="stone">
+          <div class="gallery-placeholder"><span>Whispers of Stone — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Whispers of Stone"</div>
+            <div class="gallery-meta">Marble · 2022 · H 0.6m</div>
+            <div class="gallery-desc">Italian Carrara marble, hand-finished. The surface holds light differently at every hour.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item large reveal" data-category="steel">
+          <div class="gallery-placeholder"><span>Iron Tide — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Iron Tide"</div>
+            <div class="gallery-meta">Corten Steel · 2021 · W 2.2m</div>
+            <div class="gallery-desc">Fabricated corten steel. A horizontal work that rusts deliberately, as if the weather is part of its form.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-category="bronze">
+          <div class="gallery-placeholder"><span>Stillness — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Stillness"</div>
+            <div class="gallery-meta">Bronze · 2021 · H 0.5m</div>
+            <div class="gallery-desc">A small bronze of exceptional weight and quiet. Modelled, then lost-wax cast.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1" data-category="commission">
+          <div class="gallery-placeholder"><span>Threshold — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Threshold"</div>
+            <div class="gallery-meta">Bronze · 2020 · Public Commission</div>
+            <div class="gallery-desc">Commissioned for the entrance of a civic building in Auckland. Bronze on granite plinth.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-category="stone">
+          <div class="gallery-placeholder"><span>The Listening — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"The Listening"</div>
+            <div class="gallery-meta">Basalt · 2020 · H 1.1m</div>
+            <div class="gallery-desc">Hand-carved basalt. A figure inclined slightly forward — as if waiting to hear what the room knows.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-category="bronze">
+          <div class="gallery-placeholder"><span>Weight of Years — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Weight of Years"</div>
+            <div class="gallery-meta">Bronze · 2019 · H 0.9m</div>
+            <div class="gallery-desc">Patinated bronze. The surface was built up over eighteen months of acid and fire.</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1" data-category="steel">
+          <div class="gallery-placeholder"><span>Fault Line — image</span></div>
+          <div class="gallery-overlay">
+            <div class="gallery-title">"Fault Line"</div>
+            <div class="gallery-meta">Steel · 2019 · W 1.8m</div>
+            <div class="gallery-desc">Welded mild steel, waxed. A work about tension held — just barely — in material form.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;">Commission</div>
+      <h2 class="cta-title">A Work <em>Made for You</em></h2>
+      <p class="cta-sub">Every commission begins as a conversation. Paul works with collectors, architects, and institutions to create sculpture specific to its place and purpose.</p>
+      <a href="contact.html" class="btn-primary">Begin a Conversation</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Paul <span>Brunton</span> Sculpture</div>
+      <p class="footer-copy">&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    (function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);})();
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+    reveals.forEach(el=>observer.observe(el));
+    // Filter
+    const filterBtns=document.querySelectorAll('.filter-btn');
+    const galleryItems=document.querySelectorAll('.gallery-item');
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter=btn.dataset.filter;
+        galleryItems.forEach(item=>{
+          if(filter==='all'||item.dataset.category===filter){item.style.display='block';}
+          else{item.style.display='none';}
         });
-   </script>
+      });
+    });
+  </script>
 </body>
 </html>
