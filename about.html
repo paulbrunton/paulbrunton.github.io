@@ -1,165 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Paul Brunton - Sculpture Artist</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Specific styles for about.html */
-        .about-intro {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .about-intro img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--color-accent);
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            transform: translateY(20px); /* For JS reveal */
-            opacity: 0; /* For JS reveal */
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .about-intro img.active { /* Added by JS */
-            transform: translateY(0);
-            opacity: 1;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Paul Brunton Sculpture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:#0a0908;--deep:#111009;--charcoal:#1c1a17;--iron:#2e2b26;
+      --ash:#4a4640;--stone:#7a7268;--silver:#b8b0a4;--cream:#e8e0d4;
+      --warm:#f2ebe0;--gold:#c8a96e;--bronze:#8a6838;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --display:'Cinzel',serif;--sans:'Jost',sans-serif;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--sans);background:var(--black);color:var(--cream);overflow-x:hidden;cursor:none;}
+    body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px;}
+    .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+    .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,169,110,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.8rem 5rem;transition:background 0.4s,padding 0.4s;}
+    nav.scrolled{background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);padding:1.2rem 5rem;border-bottom:1px solid rgba(200,169,110,0.1);}
+    .nav-logo{font-family:var(--display);font-size:1rem;font-weight:300;letter-spacing:0.25em;color:var(--cream);text-decoration:none;text-transform:uppercase;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:3rem;list-style:none;}
+    .nav-links a{font-family:var(--sans);font-size:0.6rem;font-weight:300;text-transform:uppercase;letter-spacing:0.25em;color:var(--stone);text-decoration:none;position:relative;transition:color 0.3s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+    .nav-links a:hover{color:var(--cream);}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+    .nav-links a.active{color:var(--cream);}
+    .section-label{display:flex;align-items:center;gap:1.5rem;font-family:var(--display);font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+    .section-label::before{content:'';display:block;width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.15s;}
+    .reveal-delay-2{transition-delay:0.3s;}
 
-        .about-section-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+    /* HERO */
+    .about-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--black);padding-top:80px;}
+    .about-hero-image{position:relative;overflow:hidden;}
+    .about-hero-image-inner{width:100%;height:100%;background:linear-gradient(160deg,#2e2b26,#111009);display:flex;align-items:center;justify-content:center;}
+    .about-hero-image-inner span{font-family:var(--serif);font-style:italic;color:rgba(184,176,164,0.2);font-size:0.9rem;letter-spacing:0.1em;}
+    .about-hero-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.05);}
+    .about-hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--black) 100%);}
+    .about-hero-text{display:flex;flex-direction:column;justify-content:center;padding:6rem 5rem 6rem 4rem;}
+    .about-hero-eyebrow{font-family:var(--display);font-size:0.5rem;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s ease 0.4s forwards;}
+    .about-hero-title{font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);font-weight:300;line-height:1;color:var(--warm);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease 0.6s forwards;}
+    .about-hero-title em{font-style:italic;color:var(--gold);display:block;}
+    .about-hero-rule{width:60px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
+    .about-hero-intro{font-family:var(--serif);font-size:1.2rem;font-weight:300;font-style:italic;line-height:1.8;color:var(--silver);opacity:0;animation:fadeUp 1s ease 1s forwards;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-        .about-section-content .text-block {
-            padding: 20px;
-        }
+    /* BIO */
+    .bio-section{padding:10rem 5rem;background:var(--deep);}
+    .bio-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:8rem;align-items:start;}
+    .bio-sidebar{}
+    .bio-stats{display:flex;flex-direction:column;gap:3rem;margin-top:3rem;}
+    .bio-stat{}
+    .bio-stat-num{font-family:var(--serif);font-size:3rem;font-weight:300;font-style:italic;color:var(--gold);line-height:1;}
+    .bio-stat-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ash);margin-top:0.4rem;}
+    .bio-text{}
+    .bio-text p{font-size:0.85rem;font-weight:200;line-height:2.2;color:var(--stone);letter-spacing:0.05em;margin-bottom:2rem;}
+    .bio-text p.lead{font-family:var(--serif);font-size:1.3rem;font-weight:300;font-style:italic;color:var(--silver);line-height:1.75;margin-bottom:2.5rem;}
+    .bio-text h3{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--warm);margin:3.5rem 0 1.5rem;}
+    .bio-text h3 em{font-style:italic;color:var(--gold);}
 
-        .about-section-content .image-block img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+    /* TIMELINE */
+    .timeline-section{padding:10rem 5rem;background:var(--charcoal);}
+    .timeline-inner{max-width:1000px;margin:0 auto;}
+    .timeline{margin-top:5rem;position:relative;}
+    .timeline::before{content:'';position:absolute;left:90px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(200,169,110,0.1));}
+    .timeline-item{display:grid;grid-template-columns:90px 40px 1fr;gap:0 2rem;margin-bottom:3.5rem;align-items:start;}
+    .timeline-year{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ash);text-align:right;padding-top:0.1rem;}
+    .timeline-dot{width:9px;height:9px;background:var(--gold);border-radius:50%;margin-top:0.35rem;position:relative;z-index:1;justify-self:center;}
+    .timeline-content h4{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--cream);margin-bottom:0.4rem;}
+    .timeline-content p{font-size:0.7rem;font-weight:200;line-height:1.8;color:var(--stone);letter-spacing:0.05em;}
 
-        .about-section-content:nth-child(even) .text-block {
-            order: 2; /* Text on right for even sections */
-        }
-        .about-section-content:nth-child(even) .image-block {
-            order: 1; /* Image on left for even sections */
-        }
+    /* INFLUENCES */
+    .influences-section{padding:10rem 5rem;background:var(--black);}
+    .influences-inner{max-width:1400px;margin:0 auto;}
+    .influences-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:5rem;}
+    .influence-card{padding:3.5rem 3rem;background:var(--charcoal);border:1px solid rgba(255,255,255,0.04);transition:border-color 0.4s;}
+    .influence-card:hover{border-color:rgba(200,169,110,0.15);}
+    .influence-num{font-family:var(--serif);font-size:2.5rem;font-weight:300;font-style:italic;color:rgba(200,169,110,0.2);line-height:1;margin-bottom:1.5rem;}
+    .influence-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--warm);margin-bottom:1rem;}
+    .influence-text{font-size:0.72rem;font-weight:200;line-height:2;color:var(--stone);letter-spacing:0.04em;}
 
-        @media (max-width: 768px) {
-            .about-section-content {
-                grid-template-columns: 1fr;
-            }
-            .about-section-content .text-block {
-                order: unset !important; /* Reset order on small screens */
-            }
-            .about-section-content .image-block {
-                order: unset !important; /* Reset order on small screens */
-            }
-        }
-    </style>
+    /* CTA */
+    .about-cta{padding:10rem 5rem;background:var(--deep);text-align:center;position:relative;overflow:hidden;}
+    .about-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(138,104,56,0.08) 0%,transparent 70%);pointer-events:none;}
+    .cta-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:var(--warm);line-height:1.05;margin-bottom:1.5rem;}
+    .cta-title em{font-style:italic;color:var(--gold);}
+    .cta-sub{font-size:0.78rem;font-weight:200;line-height:2;color:var(--stone);max-width:460px;margin:0 auto 3.5rem;letter-spacing:0.08em;}
+    .btn-primary{font-family:var(--display);font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;padding:1.1rem 3rem;background:var(--gold);color:var(--black);border:none;cursor:none;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.2s,letter-spacing 0.3s;}
+    .btn-primary:hover{background:var(--cream);transform:translateY(-2px);letter-spacing:0.4em;}
+    footer{background:var(--deep);border-top:1px solid rgba(200,169,110,0.08);padding:4rem 5rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;}
+    .footer-logo{font-family:var(--display);font-size:0.9rem;letter-spacing:0.25em;color:var(--ash);text-transform:uppercase;}
+    .footer-logo span{color:var(--bronze);}
+    .footer-copy{font-size:0.6rem;letter-spacing:0.1em;color:var(--iron);}
+    .footer-links{display:flex;gap:2rem;}
+    .footer-links a{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color 0.3s;}
+    .footer-links a:hover{color:var(--silver);}
+
+    @media(max-width:1024px){
+      nav{padding:1.5rem 2.5rem;}nav.scrolled{padding:1rem 2.5rem;}.nav-links{display:none;}
+      .about-hero{grid-template-columns:1fr;}.about-hero-image{display:none;}
+      .about-hero-text{padding:10rem 2.5rem 6rem;}
+      .bio-inner{grid-template-columns:1fr;gap:4rem;}
+      .bio-section,.timeline-section,.influences-section,.about-cta{padding-left:2.5rem;padding-right:2.5rem;}
+      .influences-grid{grid-template-columns:1fr;}
+      .timeline::before{left:70px;}
+      footer{padding:3rem 2.5rem;}.footer-inner{flex-direction:column;gap:1.5rem;text-align:center;}
+    }
+  </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-    <button id="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Paul <span>Brunton</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav id="main-nav" class="hidden">
-       <ul>
-            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
-            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
-            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
-           <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
-            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="site-wrapper">
-        <section id="about-main" class="section-layer" data-speed="0.8">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">About Paul Brunton</h2>
-                <div class="about-intro">
-                    <img src="images/paul-brunton-profile.jpg" alt="Paul Brunton Profile" class="image-reveal">
-                    <p class="text-reveal" style="max-width: 800px; margin: 0 auto;">
-                        Paul Brunton is a visionary sculptor whose hands transform raw materials into profound expressions of form and emotion. With an innate understanding of space, light, and texture, he creates pieces that resonate with both intellectual depth and aesthetic beauty.
-                    </p>
-                </div>
-
-                <div class="about-section-content content-reveal">
-                    <div class="text-block text-reveal">
-                        <h3>The Journey & Philosophy</h3>
-                        <p>
-                            Born and raised in [City, Country], Paul's fascination with three-dimensional art began early, leading him to formal studies at [Art School/University, if applicable]. His early works explored [mention early themes/materials], gradually evolving into the distinctive style seen today. Paul believes that sculpture is a dialogue between the artist, the material, and the observer, a conversation that unveils hidden truths and invites new perspectives.
-                        </p>
-                        <p>
-                            His philosophy centers on the idea of discovery—not just of the form within the material, but of the emotions and narratives that emerge during the creative process.
-                        </p>
-                    </div>
-                    <div class="image-block image-reveal delay-1">
-                        <img src="images/about-studio-1.jpg" alt="Paul Brunton working in studio">
-                    </div>
-                </div>
-
-                <div class="about-section-content content-reveal delay-1" style="margin-top: 80px;">
-                    <div class="text-block text-reveal">
-                        <h3>Inspiration & Materials</h3>
-                        <p>
-                            Paul draws inspiration from a diverse range of sources, including natural landscapes, ancient architecture, philosophical concepts, and the resilience of the human spirit. He is renowned for his mastery across various mediums, predominantly working with [mention primary materials, e.g., bronze, granite, reclaimed steel, patinated copper].
-                        </p>
-                        <p>
-                            His experimentation with different textures, finishes, and patinas is crucial to his process, allowing each material to tell its own story and to embody the intended emotional weight of the piece.
-                        </p>
-                    </div>
-                    <div class="image-block image-reveal delay-2">
-                        <img src="images/about-materials-2.jpg" alt="Close-up of sculptural material">
-                    </div>
-                </div>
-
-                <div class="center-button content-reveal delay-2">
-                    <a href="contact.html" class="button">Connect with Paul</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
-            </div>
-        </footer>
+  <div class="about-hero">
+    <div class="about-hero-image">
+      <div class="about-hero-image-inner"><span>portrait image</span></div>
     </div>
+    <div class="about-hero-text">
+      <p class="about-hero-eyebrow">Sculptor — Auckland, New Zealand</p>
+      <h1 class="about-hero-title">Paul<br><em>Brunton</em></h1>
+      <div class="about-hero-rule"></div>
+      <p class="about-hero-intro">"I am not trying to make beautiful objects. I am trying to make objects that carry something true — and beauty, if it comes, comes from that."</p>
+    </div>
+  </div>
 
-     <script src="js/script.js" defer></script>
-    <script>
-        // Additional JS for about page (if needed, default reveals handled by general script.js)
-        document.addEventListener('DOMContentLoaded', function() {
-            const profileImage = document.querySelector('.about-intro img');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        profileImage.classList.add('active');
-                        observer.unobserve(profileImage);
-                    }
-                });
-            }, { threshold: 0.1 });
-            observer.observe(profileImage);
-        });
-    </script>
+  <section class="bio-section">
+    <div class="bio-inner">
+      <div class="bio-sidebar reveal">
+        <div class="section-label">The Artist</div>
+        <div class="bio-stats">
+          <div class="bio-stat">
+            <div class="bio-stat-num">25+</div>
+            <div class="bio-stat-label">Years in practice</div>
+          </div>
+          <div class="bio-stat">
+            <div class="bio-stat-num">80+</div>
+            <div class="bio-stat-label">Works completed</div>
+          </div>
+          <div class="bio-stat">
+            <div class="bio-stat-num">12</div>
+            <div class="bio-stat-label">Solo exhibitions</div>
+          </div>
+          <div class="bio-stat">
+            <div class="bio-stat-num">3</div>
+            <div class="bio-stat-label">Public commissions</div>
+          </div>
+        </div>
+      </div>
+      <div class="bio-text reveal reveal-delay-1">
+        <p class="lead">Paul Brunton is a New Zealand sculptor working primarily in bronze, stone, and steel. His practice spans intimate gallery works, large-scale public commissions, and an ongoing inquiry into what material can hold that language cannot.</p>
+        <p>Born and raised in Auckland, Paul came to sculpture through a formal training in fine arts before spending several years working in foundries and stone yards across Europe — learning the physical reality of the materials before developing his own voice within them. He returned to New Zealand in the late 1990s and has been based in his Auckland studio ever since.</p>
+        <p>His work is not figurative in the conventional sense, though the human form — its weight, its gesture, its presence in space — is never far from the surface. He is drawn to the moment in a material when resistance gives way to possibility, when the stone begins to say what it wants to become.</p>
+        <h3>On <em>Materials</em></h3>
+        <p>Paul works primarily with three materials, each chosen for what it cannot do as much as what it can. Bronze holds detail with ruthless fidelity. Stone pushes back — it has opinions about what it will and will not become. Steel carries industrial memory, a weight of association that must be worked with, not ignored.</p>
+        <p>Each material demands a different relationship. Bronze rewards patience and precision; stone demands a kind of surrender; steel asks for directness. Paul has spent decades learning to meet each on its own terms.</p>
+        <h3>On <em>Commissions</em></h3>
+        <p>Paul welcomes commissions for private collections, public spaces, and architectural projects. He believes that sculpture made for a specific place carries something a gallery work cannot — a rootedness, a claim on its context. He works closely with clients and architects from the earliest stages of a brief, and is as interested in where a work will live as in what it will look like.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-section">
+    <div class="timeline-inner">
+      <div class="reveal">
+        <div class="section-label">Timeline</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--warm);">Selected <em style="font-style:italic;color:var(--gold);">History</em></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Matter & Memory — City Gallery Wellington</h4>
+            <p>Upcoming solo exhibition exploring materiality and lived experience. Opening June 2025.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Forms of Endurance — Objectspace, Auckland</h4>
+            <p>Solo exhibition of new works in bronze and basalt. Catalogue published.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>NZ Sculpture OnShore — Auckland</h4>
+            <p>Outdoor group exhibition, Forrest Hill. "Ascension" acquired by private collector.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Public Commission — Auckland</h4>
+            <p>"Threshold" installed at civic building entrance. Bronze on granite plinth, H 1.8m.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2010</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Studio established — Auckland</h4>
+            <p>Current workshop and studio opened in Grey Lynn. Teaching and commissions ongoing since.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-year">1998</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Return to New Zealand</h4>
+            <p>After several years working in European foundries and stone yards, returned to Auckland to establish an independent practice.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="influences-section">
+    <div class="influences-inner">
+      <div class="reveal">
+        <div class="section-label">Influences</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--warm);">What Shapes <em style="font-style:italic;color:var(--gold);">the Work</em></h2>
+      </div>
+      <div class="influences-grid">
+        <div class="influence-card reveal">
+          <div class="influence-num">I</div>
+          <h3 class="influence-title">The New Zealand Landscape</h3>
+          <p class="influence-text">Volcanic rock, coastal light, the particular heaviness of the South Island. Paul grew up surrounded by a landscape that had already been shaped by enormous forces — and his work carries something of that scale and geological patience.</p>
+        </div>
+        <div class="influence-card reveal reveal-delay-1">
+          <div class="influence-num">II</div>
+          <h3 class="influence-title">Brancusi & the Direct Carvers</h3>
+          <p class="influence-text">The conviction that the material already contains the work — that the sculptor's task is to find it, not impose it. This lineage runs through everything Paul makes, particularly the stone work.</p>
+        </div>
+        <div class="influence-card reveal reveal-delay-2">
+          <div class="influence-num">III</div>
+          <h3 class="influence-title">Time & Impermanence</h3>
+          <p class="influence-text">The paradox of making permanent objects about impermanent things. Paul is interested in what endures — not as defiance of time, but as a kind of dialogue with it. The rust on the steel. The patina that only years can make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;">Get in Touch</div>
+      <h2 class="cta-title">Work With <em>Paul</em></h2>
+      <p class="cta-sub">For commissions, acquisitions, lessons, or studio visits — Paul welcomes enquiries from collectors, architects, and anyone with a genuine interest in sculpture.</p>
+      <a href="contact.html" class="btn-primary">Make an Enquiry</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Paul <span>Brunton</span> Sculpture</div>
+      <p class="footer-copy">&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent=new Date().getFullYear();
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+    const reveals=document.querySelectorAll('.reveal');
+    new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'}).observe?document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'}).observe(el);}):null;
+    reveals.forEach(el=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'}).observe(el);});
+  </script>
 </body>
 </html>
