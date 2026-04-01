@@ -1,200 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sculptural Process - Paul Brunton Sculpture</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Specific styles for process.html */
-        .process-intro {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 60px;
-            font-size: 1.15em;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process — Paul Brunton Sculpture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --black:#0a0908;--deep:#111009;--charcoal:#1c1a17;--iron:#2e2b26;
+      --ash:#4a4640;--stone:#7a7268;--silver:#b8b0a4;--cream:#e8e0d4;
+      --warm:#f2ebe0;--gold:#c8a96e;--bronze:#8a6838;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --display:'Cinzel',serif;--sans:'Jost',sans-serif;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--sans);background:var(--black);color:var(--cream);overflow-x:hidden;cursor:none;}
+    body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px;}
+    .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+    .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,169,110,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.8rem 5rem;transition:background 0.4s,padding 0.4s;}
+    nav.scrolled{background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);padding:1.2rem 5rem;border-bottom:1px solid rgba(200,169,110,0.1);}
+    .nav-logo{font-family:var(--display);font-size:1rem;font-weight:300;letter-spacing:0.25em;color:var(--cream);text-decoration:none;text-transform:uppercase;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:3rem;list-style:none;}
+    .nav-links a{font-family:var(--sans);font-size:0.6rem;font-weight:300;text-transform:uppercase;letter-spacing:0.25em;color:var(--stone);text-decoration:none;position:relative;transition:color 0.3s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+    .nav-links a:hover{color:var(--cream);}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+    .nav-links a.active{color:var(--cream);}
+    .section-label{display:flex;align-items:center;gap:1.5rem;font-family:var(--display);font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+    .section-label::before{content:'';display:block;width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.15s;}
+    .reveal-delay-2{transition-delay:0.3s;}
 
-        .process-step {
-            display: grid;
-            grid-template-columns: 1fr 2fr; /* Number + text, then image */
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 80px;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transform: translateY(50px); /* For JS reveal */
-            opacity: 0; /* For JS reveal */
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+    /* PAGE HEADER */
+    .page-header{padding:18rem 5rem 8rem;background:var(--black);position:relative;overflow:hidden;}
+    .page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(138,104,56,0.12) 0%,transparent 60%);pointer-events:none;}
+    .page-header-inner{max-width:1400px;margin:0 auto;}
+    .page-title{font-family:var(--serif);font-size:clamp(4rem,8vw,8rem);font-weight:300;line-height:0.95;color:var(--warm);}
+    .page-title em{font-style:italic;color:var(--gold);}
+    .page-sub{font-size:0.8rem;font-weight:200;line-height:2;color:var(--stone);max-width:520px;letter-spacing:0.08em;margin-top:2rem;}
 
-        .process-step.active { /* Added by JS */
-            transform: translateY(0);
-            opacity: 1;
-        }
+    /* PROCESS STEPS */
+    .process-section{padding:10rem 5rem;background:var(--deep);}
+    .process-inner{max-width:1400px;margin:0 auto;}
+    .process-step{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;margin-bottom:10rem;}
+    .process-step:last-child{margin-bottom:0;}
+    .process-step.reverse .step-image{order:-1;}
+    .step-image{position:relative;}
+    .step-img-wrap{width:100%;aspect-ratio:4/3;background:linear-gradient(145deg,#2e2b26,#1a1714);display:flex;align-items:center;justify-content:center;border:1px solid rgba(200,169,110,0.06);position:relative;overflow:hidden;}
+    .step-img-wrap span{font-family:var(--serif);font-style:italic;color:rgba(184,176,164,0.2);font-size:0.85rem;letter-spacing:0.1em;}
+    .step-img-wrap img{width:100%;height:100%;object-fit:cover;filter:grayscale(25%) contrast(1.05);}
+    .step-image::after{content:'';position:absolute;bottom:-1.5rem;right:-1.5rem;width:55%;height:55%;border:1px solid rgba(200,169,110,0.1);z-index:-1;}
+    .process-step.reverse .step-image::after{right:auto;left:-1.5rem;}
+    .step-text{}
+    .step-number{font-family:var(--serif);font-size:5rem;font-weight:300;font-style:italic;color:rgba(200,169,110,0.12);line-height:1;margin-bottom:1rem;}
+    .step-title{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--warm);margin-bottom:1.5rem;line-height:1.1;}
+    .step-title em{font-style:italic;color:var(--gold);}
+    .step-text p{font-size:0.8rem;font-weight:200;line-height:2.1;color:var(--stone);letter-spacing:0.05em;margin-bottom:1.5rem;}
 
-        .process-step:nth-child(odd) {
-            grid-template-areas: "number text" "image image"; /* Number above text on small screen */
-            /* Standard for large: image right */
-        }
-        .process-step:nth-child(even) {
-            grid-template-areas: "number text" "image image"; /* Number above text on small screen */
-            /* Standard for large: image left */
-            direction: rtl; /* Flip content order */
-        }
+    /* MATERIALS */
+    .materials-section{padding:10rem 5rem;background:var(--charcoal);}
+    .materials-inner{max-width:1400px;margin:0 auto;}
+    .materials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:5rem;}
+    .material-card{padding:4rem 3rem;background:var(--deep);border:1px solid rgba(255,255,255,0.04);position:relative;overflow:hidden;transition:border-color 0.4s;}
+    .material-card:hover{border-color:rgba(200,169,110,0.2);}
+    .material-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease;}
+    .material-card:hover::before{transform:scaleX(1);}
+    .material-name{font-family:var(--serif);font-size:2.2rem;font-weight:300;font-style:italic;color:var(--warm);margin-bottom:0.5rem;}
+    .material-sub{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+    .material-desc{font-size:0.75rem;font-weight:200;line-height:2;color:var(--stone);letter-spacing:0.04em;margin-bottom:2rem;}
+    .material-detail{font-size:0.65rem;letter-spacing:0.08em;color:var(--ash);border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;}
+    .material-detail span{display:block;margin-bottom:0.5rem;}
 
-        .process-step .step-number {
-            font-family: var(--font-heading);
-            font-size: 4em;
-            color: var(--color-accent);
-            text-align: center;
-            line-height: 1;
-            grid-area: number;
-        }
+    /* TOOLS STRIP */
+    .tools-section{padding:8rem 5rem;background:var(--black);overflow:hidden;}
+    .tools-inner{max-width:1400px;margin:0 auto;}
+    .tools-list{display:flex;gap:4rem;margin-top:4rem;flex-wrap:wrap;}
+    .tool-item{display:flex;align-items:center;gap:1.2rem;}
+    .tool-dash{width:20px;height:1px;background:var(--bronze);}
+    .tool-name{font-family:var(--serif);font-size:1.1rem;font-style:italic;font-weight:300;color:var(--silver);}
 
-        .process-step .step-content {
-            grid-area: text;
-            direction: ltr; /* Reset text direction for content */
-        }
+    /* CTA */
+    .page-cta{padding:10rem 5rem;background:var(--deep);text-align:center;position:relative;overflow:hidden;}
+    .page-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(138,104,56,0.08) 0%,transparent 70%);pointer-events:none;}
+    .cta-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:var(--warm);line-height:1.05;margin-bottom:1.5rem;}
+    .cta-title em{font-style:italic;color:var(--gold);}
+    .cta-sub{font-size:0.78rem;font-weight:200;line-height:2;color:var(--stone);max-width:460px;margin:0 auto 3.5rem;letter-spacing:0.08em;}
+    .btn-primary{font-family:var(--display);font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;padding:1.1rem 3rem;background:var(--gold);color:var(--black);border:none;cursor:none;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.2s;}
+    .btn-primary:hover{background:var(--cream);transform:translateY(-2px);}
+    footer{background:var(--deep);border-top:1px solid rgba(200,169,110,0.08);padding:4rem 5rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;}
+    .footer-logo{font-family:var(--display);font-size:0.9rem;letter-spacing:0.25em;color:var(--ash);text-transform:uppercase;}
+    .footer-logo span{color:var(--bronze);}
+    .footer-copy{font-size:0.6rem;letter-spacing:0.1em;color:var(--iron);}
+    .footer-links{display:flex;gap:2rem;}
+    .footer-links a{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color 0.3s;}
+    .footer-links a:hover{color:var(--silver);}
 
-        .process-step .step-content h3 {
-            font-size: 2em;
-            margin-top: 0;
-            color: var(--color-primary);
-        }
-
-        .process-step .step-image {
-            grid-area: image;
-            direction: ltr; /* Reset image direction for image */
-            text-align: center;
-        }
-
-        .process-step .step-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        @media (max-width: 768px) {
-            .process-step {
-                grid-template-columns: 1fr;
-                grid-template-areas: "number" "text" "image";
-                direction: ltr; /* Force LTR on small screens */
-                padding: 30px;
-            }
-            .process-step .step-number {
-                margin-bottom: 20px;
-            }
-            .process-step:nth-child(even) {
-                direction: ltr; /* Ensure consistent layout on small screens */
-            }
-        }
-    </style>
+    @media(max-width:1024px){
+      nav{padding:1.5rem 2.5rem;}nav.scrolled{padding:1rem 2.5rem;}.nav-links{display:none;}
+      .page-header,.process-section,.materials-section,.tools-section,.page-cta{padding-left:2.5rem;padding-right:2.5rem;}
+      .process-step{grid-template-columns:1fr;gap:3rem;}
+      .process-step.reverse .step-image{order:0;}
+      .materials-grid{grid-template-columns:1fr;}
+      footer{padding:3rem 2.5rem;}.footer-inner{flex-direction:column;gap:1.5rem;text-align:center;}
+    }
+  </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-    <button id="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Paul <span>Brunton</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html" class="active">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav id="main-nav" class="hidden">
-   <ul>
-            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
-            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
-            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
-           <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
-            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="site-wrapper">
-        <section id="process-main" class="section-layer" data-speed="0.8">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">The Sculptural Journey</h2>
-                <p class="process-intro text-reveal">
-                    Every sculpture by Paul Brunton embarks on a meticulous journey from raw concept to finished form. It's a dialogue between intuition and technique, material and vision. Here's a glimpse into the creative process:
-                </p>
-
-                <div class="process-step content-reveal">
-                    <div class="step-number text-reveal">01</div>
-                    <div class="step-content text-reveal delay-1">
-                        <h3>Conception & Sketching</h3>
-                        <p>
-                            The journey begins with an idea, often sparked by a found object, a natural form, or a philosophical concept. Paul translates these initial inspirations into detailed sketches, exploring contours, mass, and potential movement. This is where the abstract vision starts to take a tangible shape on paper.
-                        </p>
-                    </div>
-                    <div class="step-image image-reveal delay-2">
-                        <img src="images/process-sketch.jpg" alt="Sketches of sculpture ideas">
-                    </div>
-                </div>
-
-                <div class="process-step content-reveal delay-1">
-                    <div class="step-number text-reveal">02</div>
-                    <div class="step-content text-reveal delay-1">
-                        <h3>Material Selection & Preparation</h3>
-                        <p>
-                            Choosing the right material is crucial. Whether it's selecting a rough block of marble, sourcing specific alloys for bronze casting, or finding unique pieces of reclaimed timber, the material itself often dictates the final form. Preparation involves cutting, shaping, and sometimes treating the raw material to begin the sculpting process.
-                        </p>
-                    </div>
-                    <div class="step-image image-reveal delay-2">
-                        <img src="images/process-material.jpg" alt="Raw stone material in studio">
-                    </div>
-                </div>
-
-                <div class="process-step content-reveal delay-2">
-                    <div class="step-number text-reveal">03</div>
-                    <div class="step-content text-reveal delay-1">
-                        <h3>Shaping & Refinement</h3>
-                        <p>
-                            This is the heart of the sculptural process. Using a combination of traditional tools and modern techniques, Paul meticulously carves, welds, casts, or constructs the piece. It's a highly iterative phase, where the form is slowly revealed, refined, and often re-imagined. Attention is paid to every curve, angle, and texture to achieve the desired emotional and visual impact.
-                        </p>
-                    </div>
-                    <div class="step-image image-reveal delay-2">
-                        <img src="images/process-shaping.jpg" alt="Sculptor shaping a metal piece">
-                    </div>
-                </div>
-
-                <div class="process-step content-reveal delay-3">
-                    <div class="step-number text-reveal">04</div>
-                    <div class="step-content text-reveal delay-1">
-                        <h3>Finishing & Patination</h3>
-                        <p>
-                            The final stages involve polishing, sanding, and applying various finishes. For bronze, this often means applying a patina—a chemical treatment that reacts with the metal to create rich colors and textures, enhancing the sculpture's character. This process is crucial in giving the piece its unique surface narrative and protecting it for longevity.
-                        </p>
-                    </div>
-                    <div class="step-image image-reveal delay-2">
-                        <img src="images/process-patina.jpg" alt="Applying patina to bronze sculpture">
-                    </div>
-                </div>
-
-                <div class="center-button content-reveal delay-3">
-                    <a href="portfolio.html" class="button">See the Finished Works</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
-            </div>
-        </footer>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">In the Workshop</div>
+      <h1 class="page-title">How the<br><em>Work</em> is Made</h1>
+      <p class="page-sub">Sculpture is not a quick art. Every piece moves through a sequence of decisions, resistances, and discoveries — from first thought to finished surface. This is what that sequence looks like.</p>
     </div>
+  </div>
 
-  <script src="js/script.js" defer></script>
-    <script>
-        // Additional JS for process page (if needed, default reveals handled by general script.js)
-        // No specific additional JS needed for this simple layout, as general script.js handles content-reveal
-    </script>
+  <section class="process-section">
+    <div class="process-inner">
+
+      <div class="process-step reveal">
+        <div class="step-text">
+          <div class="step-number">01</div>
+          <div class="section-label">The Beginning</div>
+          <h2 class="step-title">Idea &<br><em>Maquette</em></h2>
+          <p>Every work begins not with material but with time — hours of looking, sketching, thinking sideways. Paul keeps notebooks of forms, not descriptions. A line or a shadow that keeps returning is usually the beginning of something.</p>
+          <p>From drawing, he moves to small-scale maquettes in clay or wax. These are not models of the finished work — they are thinking-tools, a way of holding the idea in three dimensions before committing to the material it will ultimately inhabit.</p>
+        </div>
+        <div class="step-image">
+          <div class="step-img-wrap"><span>maquette / sketches image</span></div>
+        </div>
+      </div>
+
+      <div class="process-step reverse reveal">
+        <div class="step-text">
+          <div class="step-number">02</div>
+          <div class="section-label">Choosing</div>
+          <h2 class="step-title">Selecting<br><em>the Material</em></h2>
+          <p>The choice of material is never incidental. Bronze will hold the finest detail but carries associations — permanence, ceremony, history — that become part of the meaning. Stone has its own grain and internal logic that must be respected or fought. Steel is blunt and industrial, and that directness is part of its honesty.</p>
+          <p>For stone, Paul sources blocks in person where possible, reading the material for faults, veins, and hidden character before committing. The stone already has opinions about what it will become.</p>
+        </div>
+        <div class="step-image">
+          <div class="step-img-wrap"><span>material selection image</span></div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-text">
+          <div class="step-number">03</div>
+          <div class="section-label">The Work</div>
+          <h2 class="step-title">Making &<br><em>Resistance</em></h2>
+          <p>The making is where plans dissolve. The material resists, reveals, and redirects. Paul describes this phase as a long negotiation — patient, sometimes frustrating, occasionally exhilarating. The work that emerges is never quite the work that was planned, and that is how it should be.</p>
+          <p>For bronze, this phase involves modelling in clay, mould-making, and foundry casting — a process that can take weeks. For stone carving, the work is direct and irreversible: every cut a commitment. Steel fabrication falls somewhere between — planned and welded, but always open to revision until the final pass.</p>
+        </div>
+        <div class="step-image">
+          <div class="step-img-wrap"><span>making / process image</span></div>
+        </div>
+      </div>
+
+      <div class="process-step reverse reveal">
+        <div class="step-text">
+          <div class="step-number">04</div>
+          <div class="section-label">Finishing</div>
+          <h2 class="step-title">Surface &<br><em>Patina</em></h2>
+          <p>The surface of a sculpture is its skin — what the world touches first, and what carries the memory of making. Paul pays meticulous attention to finish: the hand-polished bronze, the raw stone edge left intentionally rough against a worked face, the waxed steel that will change over time.</p>
+          <p>Patination on bronze can take days of acid work, heat, and chemical application. It is the most painstaking stage of the process, and the most transformative. A bronze with a poor patina is a piece in the wrong skin.</p>
+        </div>
+        <div class="step-image">
+          <div class="step-img-wrap"><span>patina / surface finish image</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="materials-section">
+    <div class="materials-inner">
+      <div class="reveal">
+        <div class="section-label">Materials</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--warm);">The <em style="font-style:italic;color:var(--gold);">Three Materials</em></h2>
+      </div>
+      <div class="materials-grid">
+        <div class="material-card reveal">
+          <div class="material-name">Bronze</div>
+          <div class="material-sub">Cast & patinated</div>
+          <p class="material-desc">Lost-wax casting allows forms of extraordinary complexity and detail. Paul works with a local Auckland foundry for the pour, but handles all modelling, chasing, and patination in-house. Each bronze is unique — even editions carry individual variation.</p>
+          <div class="material-detail">
+            <span>Method — Lost-wax casting</span>
+            <span>Finish — Acid & chemical patination</span>
+            <span>Lifespan — Centuries with basic care</span>
+          </div>
+        </div>
+        <div class="material-card reveal reveal-delay-1">
+          <div class="material-name">Stone</div>
+          <div class="material-sub">Direct carved</div>
+          <p class="material-desc">Limestone, marble, and basalt sourced from New Zealand and abroad. All stone work is direct-carved — no pointing machine, no enlargement. The form is found in the block, not transferred to it. Each piece is therefore unrepeatable.</p>
+          <div class="material-detail">
+            <span>Method — Direct hand carving</span>
+            <span>Finish — Hand-polished or textured</span>
+            <span>Lifespan — Geological, outdoors or in</span>
+          </div>
+        </div>
+        <div class="material-card reveal reveal-delay-2">
+          <div class="material-name">Steel</div>
+          <div class="material-sub">Fabricated & welded</div>
+          <p class="material-desc">Mild steel and corten, cut and welded in the studio. Paul is drawn to steel's industrial associations — it carries the memory of manufacture, of function, of weight. Corten works left outdoors rust to a deep, stable surface. Mild steel is waxed or lacquered.</p>
+          <div class="material-detail">
+            <span>Method — Fabricated & welded</span>
+            <span>Finish — Waxed, lacquered, or rusted</span>
+            <span>Lifespan — Decades with minimal maintenance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools-section">
+    <div class="tools-inner reveal">
+      <div class="section-label">The Studio</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,3vw,3rem);font-weight:300;color:var(--warm);margin-bottom:1rem;">What Lines the Walls</h2>
+      <p style="font-size:0.78rem;font-weight:200;color:var(--stone);max-width:500px;line-height:2;letter-spacing:0.05em;">A partial inventory of the tools that make the work possible.</p>
+      <div class="tools-list">
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Tungsten carbide chisels</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Angle grinders</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">MIG & TIG welders</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Clay modelling tools</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Pneumatic hammers</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Patination acids & torch</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Diamond-tip polishing pads</div></div>
+        <div class="tool-item"><div class="tool-dash"></div><div class="tool-name">Wax & burnishing tools</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;">Visit</div>
+      <h2 class="cta-title">See the <em>Studio</em></h2>
+      <p class="cta-sub">Paul welcomes studio visits by appointment — for collectors, those considering a commission, or anyone with a serious interest in seeing the work close up and the process in action.</p>
+      <a href="contact.html" class="btn-primary">Request a Visit</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Paul <span>Brunton</span> Sculpture</div>
+      <p class="footer-copy">&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent=new Date().getFullYear();
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+    const nav=document.getElementById('main-nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+    document.querySelectorAll('.reveal').forEach(el=>{
+      new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'}).observe(el);
+    });
+  </script>
 </body>
 </html>
