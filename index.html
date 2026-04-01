@@ -1,106 +1,1261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Brunton Sculpture - Artistry in Form</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Brunton Sculpture — Artistry in Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0a0908;
+      --deep:     #111009;
+      --charcoal: #1c1a17;
+      --iron:     #2e2b26;
+      --ash:      #4a4640;
+      --stone:    #7a7268;
+      --silver:   #b8b0a4;
+      --cream:    #e8e0d4;
+      --warm:     #f2ebe0;
+      --gold:     #c8a96e;
+      --bronze:   #8a6838;
+      --rust:     #6e3c1e;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --display:  'Cinzel', serif;
+      --sans:     'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor {
+      position: fixed; width: 8px; height: 8px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(200,169,110,0.5);
+      border-radius: 50%; pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.3s, height 0.3s;
+    }
+    body:hover .cursor { opacity: 1; }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.8rem 5rem;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(10,9,8,0.95);
+      backdrop-filter: blur(12px);
+      padding: 1.2rem 5rem;
+      border-bottom: 1px solid rgba(200,169,110,0.1);
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 3rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--stone);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* hamburger */
+    #nav-toggle {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: none;
+      padding: 4px; z-index: 600;
+    }
+    #nav-toggle .bar {
+      display: block; width: 24px; height: 1px;
+      background: var(--cream); transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: var(--black);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse at 70% 50%, rgba(110,60,30,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(200,169,110,0.05) 0%, transparent 50%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0; overflow: hidden; opacity: 0.06;
+    }
+    .hero-lines::before {
+      content: '';
+      position: absolute; top: -50%; left: 30%;
+      width: 1px; height: 200%;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      animation: lineFloat 8s ease-in-out infinite;
+    }
+    .hero-lines::after {
+      content: '';
+      position: absolute; top: -50%; left: 65%;
+      width: 1px; height: 200%;
+      background: linear-gradient(to bottom, transparent, var(--silver), transparent);
+      animation: lineFloat 12s ease-in-out infinite reverse;
+    }
+    @keyframes lineFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-40px); }
+    }
+    .hero-image-side {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 45%;
+      overflow: hidden;
+    }
+    .hero-image-side img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.35;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    .hero-image-side::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to right, var(--black) 0%, transparent 40%, transparent 70%, var(--black) 100%);
+    }
+    .hero-image-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #2e2b26 0%, #1c1a17 50%, #111009 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-image-placeholder span {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(184,176,164,0.2);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; width: 100%;
+      padding: 0 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .hero-text { grid-column: 1; }
+    .hero-eyebrow {
+      font-family: var(--display);
+      font-size: 0.55rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 7vw, 7.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--warm);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+    }
+    .hero-rule {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s forwards;
+    }
+    .hero-sub {
+      font-size: 0.8rem;
+      font-weight: 200;
+      line-height: 2;
+      color: var(--stone);
+      max-width: 380px;
+      letter-spacing: 0.08em;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+    .hero-ctas {
+      display: flex; gap: 2rem; align-items: center;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.1s forwards;
+    }
+    .btn-primary {
+      font-family: var(--display);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 1.1rem 3rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none; cursor: none;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, transform 0.2s, letter-spacing 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      letter-spacing: 0.4em;
+    }
+    .btn-ghost {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.8rem;
+      transition: color 0.3s, gap 0.3s;
+    }
+    .btn-ghost::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+    .btn-ghost:hover { color: var(--cream); gap: 1.2rem; }
+    .hero-scroll {
+      position: absolute; bottom: 3rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.8s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-label {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-family: var(--display);
+      font-size: 0.5rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--warm);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ── INTRO ── */
+    #intro {
+      padding: 10rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      align-items: center;
+      background: var(--black);
+      max-width: 1400px; margin: 0 auto;
+    }
+    .intro-text p {
+      font-size: 0.82rem;
+      font-weight: 200;
+      line-height: 2.1;
+      color: var(--stone);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .intro-text p:first-of-type {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--silver);
+      line-height: 1.7;
+    }
+    .intro-image {
+      position: relative;
+    }
+    .intro-image img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.05);
+    }
+    .intro-image-placeholder {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(150deg, #2e2b26, #1a1714);
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(200,169,110,0.08);
+    }
+    .intro-image-placeholder span {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(184,176,164,0.2);
+      font-size: 0.85rem;
+    }
+    .intro-image::after {
+      content: '';
+      position: absolute;
+      top: 2rem; left: 2rem; right: -1rem; bottom: -1rem;
+      border: 1px solid rgba(200,169,110,0.15);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ── WORKS ── */
+    #works {
+      padding: 10rem 5rem;
+      background: var(--deep);
+    }
+    .works-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 5rem;
+    }
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+    .work-item {
+      position: relative; overflow: hidden;
+      background: var(--charcoal);
+      cursor: none;
+    }
+    .work-item:first-child {
+      grid-row: 1 / 3;
+    }
+    .work-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%) contrast(1.05);
+      transition: transform 0.7s ease, filter 0.5s ease;
+      display: block;
+    }
+    .work-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%) contrast(1.1);
+    }
+    .work-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, #2e2b26, #1c1a17);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.5s;
+    }
+    .work-item:first-child .work-placeholder {
+      aspect-ratio: auto; height: 100%; min-height: 500px;
+    }
+    .work-item:hover .work-placeholder {
+      background: linear-gradient(145deg, #3e3730, #2a2520);
+    }
+    .work-placeholder span {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(184,176,164,0.15);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+    .work-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 3rem 2rem 2rem;
+      background: linear-gradient(to top, rgba(10,9,8,0.92) 0%, transparent 100%);
+      transform: translateY(70%);
+      transition: transform 0.4s ease;
+    }
+    .work-item:hover .work-info { transform: translateY(0); }
+    .work-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--warm);
+      margin-bottom: 0.3rem;
+    }
+    .work-meta {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .works-cta {
+      display: flex; justify-content: center;
+      margin-top: 4rem;
+    }
+
+    /* ── WORKSHOP ── */
+    #workshop {
+      padding: 10rem 5rem;
+      background: var(--charcoal);
+      position: relative; overflow: hidden;
+    }
+    #workshop::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 40%; height: 100%;
+      background: radial-gradient(ellipse at right, rgba(110,60,30,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .workshop-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .workshop-image-wrap { position: relative; }
+    .workshop-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      filter: grayscale(25%) contrast(1.1);
+    }
+    .workshop-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(140deg, #2a2520, #1a1714);
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(200,169,110,0.06);
+    }
+    .workshop-img-placeholder span {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(184,176,164,0.2);
+      font-size: 0.85rem;
+    }
+    .workshop-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 60%; height: 60%;
+      border: 1px solid rgba(200,169,110,0.12);
+      z-index: -1;
+    }
+    .workshop-text p {
+      font-size: 0.82rem;
+      font-weight: 200;
+      line-height: 2.1;
+      color: var(--stone);
+      letter-spacing: 0.05em;
+      margin-top: 1.5rem;
+    }
+    .workshop-stats {
+      display: flex; gap: 4rem;
+      margin-top: 3.5rem; padding-top: 3rem;
+      border-top: 1px solid rgba(200,169,110,0.1);
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 0.5rem;
+    }
+
+    /* ── EXHIBITIONS ── */
+    #exhibitions {
+      padding: 10rem 5rem;
+      background: var(--black);
+    }
+    .exhibitions-inner { max-width: 1400px; margin: 0 auto; }
+    .exhibitions-list { margin-top: 5rem; }
+    .exh-item {
+      display: grid;
+      grid-template-columns: 90px 1fr 220px 110px;
+      align-items: center;
+      gap: 3rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.3s;
+      position: relative;
+    }
+    .exh-item::before {
+      content: '';
+      position: absolute; left: -5rem; right: -5rem; top: 0; bottom: 0;
+      background: rgba(200,169,110,0.02);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .exh-item:hover::before { opacity: 1; }
+    .exh-item:first-child { border-top: 1px solid rgba(255,255,255,0.04); }
+    .exh-year {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ash);
+    }
+    .exh-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+    .exh-venue {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--stone);
+    }
+    .exh-badge {
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--ash);
+      color: var(--ash);
+      text-align: center;
+      justify-self: end;
+    }
+    .exh-badge.upcoming {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── LESSONS ── */
+    #lessons {
+      padding: 10rem 5rem;
+      background: var(--deep);
+    }
+    .lessons-inner { max-width: 1400px; margin: 0 auto; }
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-top: 5rem;
+    }
+    .lesson-card {
+      padding: 4rem 3.5rem;
+      background: var(--charcoal);
+      border: 1px solid rgba(255,255,255,0.04);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .lesson-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), var(--bronze));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    .lesson-card:hover::after { transform: scaleX(1); }
+    .lesson-card:hover { border-color: rgba(200,169,110,0.15); }
+    .lesson-icon {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(200,169,110,0.2);
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+    .lesson-type {
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .lesson-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--warm);
+      margin-bottom: 1.2rem;
+    }
+    .lesson-desc {
+      font-size: 0.75rem;
+      font-weight: 200;
+      line-height: 2;
+      color: var(--stone);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+    .lesson-details {
+      display: flex; flex-direction: column; gap: 0.7rem;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: rgba(0,0,0,0.2);
+      border-left: 2px solid rgba(200,169,110,0.2);
+    }
+    .lesson-detail {
+      display: flex; gap: 1.5rem;
+      font-size: 0.65rem; letter-spacing: 0.08em;
+    }
+    .ld-label { color: var(--ash); width: 90px; flex-shrink: 0; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.15em; }
+    .ld-val { color: var(--silver); }
+
+    /* ── PRICING ── */
+    #pricing {
+      padding: 10rem 5rem;
+      background: var(--charcoal);
+    }
+    .pricing-inner { max-width: 1400px; margin: 0 auto; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-top: 5rem;
+    }
+    .price-card {
+      padding: 4rem 3rem;
+      background: var(--deep);
+      border: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+      transition: border-color 0.4s, transform 0.3s;
+    }
+    .price-card:hover {
+      border-color: rgba(200,169,110,0.2);
+      transform: translateY(-4px);
+    }
+    .price-card.featured {
+      background: linear-gradient(160deg, #1e1a12, #111009);
+      border-color: rgba(200,169,110,0.3);
+    }
+    .price-card.featured::before {
+      content: 'Most Popular';
+      position: absolute; top: -1px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase;
+      background: var(--gold); color: var(--black);
+      padding: 0.4rem 1.5rem;
+    }
+    .price-tier {
+      font-size: 0.55rem; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .price-name {
+      font-family: var(--serif);
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--warm); margin-bottom: 1.5rem;
+    }
+    .price-amount {
+      font-family: var(--serif);
+      font-size: 3.5rem; font-weight: 300;
+      font-style: italic; color: var(--cream);
+      line-height: 1; margin-bottom: 0.3rem;
+    }
+    .price-period {
+      font-size: 0.6rem; letter-spacing: 0.15em;
+      color: var(--ash); margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+    .price-divider {
+      height: 1px;
+      background: linear-gradient(to right, rgba(200,169,110,0.2), transparent);
+      margin-bottom: 2.5rem;
+    }
+    .price-features {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .price-features li {
+      font-size: 0.7rem; font-weight: 200;
+      color: var(--stone); letter-spacing: 0.05em;
+      line-height: 1.6;
+      padding-left: 1.5rem; position: relative;
+    }
+    .price-features li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--bronze);
+    }
+    .price-btn {
+      display: block; width: 100%;
+      padding: 1rem;
+      text-align: center;
+      font-family: var(--display);
+      font-size: 0.5rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(200,169,110,0.3);
+      color: var(--silver);
+      cursor: none;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, letter-spacing 0.3s;
+    }
+    .price-btn:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      letter-spacing: 0.4em;
+    }
+    .price-card.featured .price-btn {
+      background: rgba(200,169,110,0.15);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .price-card.featured .price-btn:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ── CTA ── */
+    #cta {
+      padding: 12rem 5rem;
+      background: var(--black);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(138,104,56,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 300;
+      color: var(--warm);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .cta-title em { font-style: italic; color: var(--gold); }
+    .cta-sub {
+      font-size: 0.8rem; font-weight: 200;
+      line-height: 2; color: var(--stone);
+      max-width: 500px; margin: 0 auto 4rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid rgba(200,169,110,0.08);
+      padding: 4rem 5rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      color: var(--ash);
+      text-transform: uppercase;
+    }
+    .footer-logo span { color: var(--bronze); }
+    .footer-copy {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--iron);
+    }
+    .footer-links {
+      display: flex; gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--silver); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.5rem 2.5rem; }
+      nav.scrolled { padding: 1rem 2.5rem; }
+      .nav-links { display: none; }
+      #nav-toggle { display: flex; }
+      .hero-content { grid-template-columns: 1fr; padding: 0 2.5rem; }
+      .hero-image-side { display: none; }
+      #intro, .workshop-inner { grid-template-columns: 1fr; gap: 4rem; }
+      #intro { padding: 6rem 2.5rem; }
+      #works { padding: 6rem 2.5rem; }
+      .works-grid { grid-template-columns: 1fr 1fr; }
+      .work-item:first-child { grid-row: auto; grid-column: 1 / -1; }
+      #workshop, #exhibitions, #lessons, #pricing, #cta { padding: 6rem 2.5rem; }
+      .exh-item { grid-template-columns: 70px 1fr; gap: 1.5rem; }
+      .exh-venue, .exh-badge { display: none; }
+      .lessons-grid, .pricing-grid { grid-template-columns: 1fr; }
+      footer { padding: 3rem 2.5rem; }
+      .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 3.5rem; }
+      .works-grid { grid-template-columns: 1fr; }
+      .workshop-stats { gap: 2rem; }
+      .works-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <button id="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Paul <span>Brunton</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="nav-toggle" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
+  </nav>
 
-    <nav id="main-nav" class="hidden">
-        <ul>
-            <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
-            <li><a href="portfolio.html" class="nav-item" data-text="Works">Works</a></li>
-            <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
-           <li><a href="process.html" class="nav-item" data-text="Process">Process</a></li>
-            <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="site-wrapper">
-        <section id="hero" class="hero-section section-layer" data-speed="0.5">
-           <div class="hero-bg"></div>
-<div class="hero-content">
-    <h1 class="fade-in">Paul Brunton Sculpture</h1>
-    <p class="fade-in delay-1">Where Vision Takes Form</p>
-    <a href="portfolio.html" class="button fade-in delay-2">Explore the Collection</a>
-</div>
-<div class="hero-overlay"></div> </section>
-
-        <section id="intro" class="intro-section section-layer" data-speed="0.8">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">About the Artistry</h2>
-                <div class="intro-grid">
-                    <div class="text-block">
-                        <p>Paul Brunton crafts compelling sculptural forms that speak to the raw beauty of material and the profound depth of human experience. His work transcends conventional boundaries, inviting contemplation and dialogue.</p>
-                        <p>Each piece is a journey, transforming the rigid into the fluid, the abstract into the tangible. Explore the evolution of form and the stories embedded within bronze, stone, and steel.</p>
-                        <a href="about.html" class="button button-secondary">Learn More About Paul</a>
-                    </div>
-                    <div class="image-block">
-                        <img src="images/sculpture-intro-1.jpg" alt="Abstract sculpture piece" class="image-reveal">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="featured-works" class="featured-works-section section-layer" data-speed="1.2">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">Featured Creations</h2>
-                <div class="featured-gallery">
-                    <div class="featured-item item-reveal">
-                        <a href="sculpture-detail.html?id=sculpture-alpha">
-                            <img src="images/featured-sculpture-1.jpg" alt="Featured Sculpture Alpha">
-                            <div class="caption">"Ascension"</div>
-                        </a>
-                    </div>
-                    <div class="featured-item item-reveal delay-1">
-                        <a href="sculpture-detail.html?id=sculpture-beta">
-                            <img src="images/featured-sculpture-2.jpg" alt="Featured Sculpture Beta">
-                            <div class="caption">"Terra Firma"</div>
-                        </a>
-                    </div>
-                    <div class="featured-item item-reveal delay-2">
-                        <a href="sculpture-detail.html?id=sculpture-gamma">
-                            <img src="images/featured-sculpture-3.jpg" alt="Featured Sculpture Gamma">
-                            <div class="caption">"Whispers of Stone"</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="center-button content-reveal delay-3">
-                    <a href="portfolio.html" class="button">View All Works</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta" class="cta-section section-layer" data-speed="0.8">
-            <div class="container content-reveal">
-                <h2 class="title-reveal">Begin Your Collection</h2>
-                <p class="text-reveal">Paul Brunton welcomes inquiries for commissions, acquisitions, and collaborations. Connect directly to discuss your vision.</p>
-                <a href="contact.html" class="button button-contact">Contact Paul</a>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
-            </div>
-        </footer>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-image-side">
+      <div class="hero-image-placeholder">
+        <span>hero image</span>
+      </div>
     </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Sculptor — New Zealand</p>
+        <h1 class="hero-title">
+          Matter<br>
+          <em>Made</em><br>
+          Permanent
+        </h1>
+        <div class="hero-rule"></div>
+        <p class="hero-sub">Paul Brunton works in bronze, stone, and steel — transforming raw material into sculptural form that endures. Each piece is a dialogue between artist, medium, and the unseen forces that shape us.</p>
+        <div class="hero-ctas">
+          <a href="portfolio.html" class="btn-primary">View the Works</a>
+          <a href="contact.html" class="btn-ghost">Commission a piece</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    <script src="js/script.js" defer></script>
+  <!-- INTRO -->
+  <section>
+    <div id="intro">
+      <div class="intro-text reveal">
+        <div class="section-label">The Artist</div>
+        <h2 class="section-title" style="margin-bottom:2rem;">Shaping the <em>Unsayable</em></h2>
+        <p>There are things the human voice cannot express — only the hands can reach them. Paul Brunton has spent decades finding those things in stone and metal, coaxing forms that carry weight, silence, and meaning.</p>
+        <p>His work spans public commissions, intimate gallery pieces, and ongoing explorations in the workshop. It is sculpture that asks to be stood beside, not merely viewed — work that changes with the light and with the years.</p>
+        <a href="about.html" class="btn-primary" style="margin-top:2.5rem;">About Paul</a>
+      </div>
+      <div class="intro-image reveal reveal-delay-1">
+        <div class="intro-image-placeholder">
+          <span>portrait / studio image</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORKS -->
+  <section id="works">
+    <div class="works-header reveal">
+      <div>
+        <div class="section-label">Selected Works</div>
+        <h2 class="section-title">The <em>Collection</em></h2>
+      </div>
+      <a href="portfolio.html" class="btn-ghost">Full portfolio</a>
+    </div>
+    <div class="works-grid">
+      <div class="work-item reveal">
+        <a href="sculpture-detail.html?id=ascension">
+          <div class="work-placeholder"><span>Ascension — image</span></div>
+          <div class="work-info">
+            <div class="work-title">"Ascension"</div>
+            <div class="work-meta">Bronze · 2023</div>
+          </div>
+        </a>
+      </div>
+      <div class="work-item reveal reveal-delay-1">
+        <a href="sculpture-detail.html?id=terra-firma">
+          <div class="work-placeholder"><span>Terra Firma — image</span></div>
+          <div class="work-info">
+            <div class="work-title">"Terra Firma"</div>
+            <div class="work-meta">Stone · 2022</div>
+          </div>
+        </a>
+      </div>
+      <div class="work-item reveal reveal-delay-2">
+        <a href="sculpture-detail.html?id=whispers">
+          <div class="work-placeholder"><span>Whispers of Stone — image</span></div>
+          <div class="work-info">
+            <div class="work-title">"Whispers of Stone"</div>
+            <div class="work-meta">Marble · 2022</div>
+          </div>
+        </a>
+      </div>
+      <div class="work-item reveal reveal-delay-1">
+        <a href="sculpture-detail.html?id=iron-tide">
+          <div class="work-placeholder"><span>Iron Tide — image</span></div>
+          <div class="work-info">
+            <div class="work-title">"Iron Tide"</div>
+            <div class="work-meta">Steel · 2021</div>
+          </div>
+        </a>
+      </div>
+      <div class="work-item reveal reveal-delay-2">
+        <a href="sculpture-detail.html?id=stillness">
+          <div class="work-placeholder"><span>Stillness — image</span></div>
+          <div class="work-info">
+            <div class="work-title">"Stillness"</div>
+            <div class="work-meta">Bronze · 2021</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="works-cta reveal">
+      <a href="portfolio.html" class="btn-primary">View All Works</a>
+    </div>
+  </section>
+
+  <!-- IN THE WORKSHOP -->
+  <section id="workshop">
+    <div class="workshop-inner">
+      <div class="workshop-image-wrap reveal">
+        <div class="workshop-img-placeholder">
+          <span>workshop / process image</span>
+        </div>
+        <div class="workshop-accent"></div>
+      </div>
+      <div class="workshop-text reveal reveal-delay-1">
+        <div class="section-label">In the Workshop</div>
+        <h2 class="section-title">Where <em>Form</em><br>Begins</h2>
+        <p>The studio is where silence and intention meet. Every piece begins not with a tool, but with hours of looking — at the material, at its grain and weight and resistance — until the form reveals itself from within.</p>
+        <p>Paul works primarily in bronze casting, direct stone carving, and fabricated steel. He welcomes studio visits by appointment for collectors, collaborators, and the genuinely curious.</p>
+        <a href="process.html" class="btn-ghost" style="margin-top:2rem;">See the process</a>
+        <div class="workshop-stats">
+          <div>
+            <div class="stat-num">25+</div>
+            <div class="stat-label">Years working</div>
+          </div>
+          <div>
+            <div class="stat-num">80+</div>
+            <div class="stat-label">Works completed</div>
+          </div>
+          <div>
+            <div class="stat-num">3</div>
+            <div class="stat-label">Core materials</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS -->
+  <section id="exhibitions">
+    <div class="exhibitions-inner">
+      <div class="reveal">
+        <div class="section-label">Exhibitions</div>
+        <h2 class="section-title">On <em>Show</em></h2>
+      </div>
+      <div class="exhibitions-list">
+        <div class="exh-item reveal">
+          <div class="exh-year">2025</div>
+          <div>
+            <div class="exh-title">Matter & Memory</div>
+          </div>
+          <div class="exh-venue">City Gallery Wellington, NZ</div>
+          <div class="exh-badge upcoming">Upcoming</div>
+        </div>
+        <div class="exh-item reveal reveal-delay-1">
+          <div class="exh-year">2024</div>
+          <div>
+            <div class="exh-title">Forms of Endurance</div>
+          </div>
+          <div class="exh-venue">Objectspace, Auckland, NZ</div>
+          <div class="exh-badge">Solo</div>
+        </div>
+        <div class="exh-item reveal reveal-delay-1">
+          <div class="exh-year">2023</div>
+          <div>
+            <div class="exh-title">New Zealand Sculpture OnShore</div>
+          </div>
+          <div class="exh-venue">Forrest Hill, Auckland, NZ</div>
+          <div class="exh-badge">Group</div>
+        </div>
+        <div class="exh-item reveal reveal-delay-2">
+          <div class="exh-year">2022</div>
+          <div>
+            <div class="exh-title">The Weight of Things</div>
+          </div>
+          <div class="exh-venue">Two Rooms Gallery, Auckland, NZ</div>
+          <div class="exh-badge">Solo</div>
+        </div>
+        <div class="exh-item reveal reveal-delay-2">
+          <div class="exh-year">2021</div>
+          <div>
+            <div class="exh-title">Material Witness</div>
+          </div>
+          <div class="exh-venue">Waikato Museum, Hamilton, NZ</div>
+          <div class="exh-badge">Group</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LESSONS & CONSULTATIONS -->
+  <section id="lessons">
+    <div class="lessons-inner">
+      <div class="reveal">
+        <div class="section-label">Learn & Consult</div>
+        <h2 class="section-title">Work With <em>Paul</em></h2>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card reveal">
+          <div class="lesson-icon">I</div>
+          <div class="lesson-type">Private Lessons</div>
+          <h3 class="lesson-title">Sculptural Instruction</h3>
+          <p class="lesson-desc">One-to-one tuition across clay modelling, stone carving, and bronze casting fundamentals. Sessions are tailored to your experience — whether you are picking up tools for the first time or developing an existing practice.</p>
+          <div class="lesson-details">
+            <div class="lesson-detail"><span class="ld-label">Duration</span><span class="ld-val">2 – 3 hours per session</span></div>
+            <div class="lesson-detail"><span class="ld-label">Location</span><span class="ld-val">Paul's studio, Auckland</span></div>
+            <div class="lesson-detail"><span class="ld-label">Levels</span><span class="ld-val">Beginner to advanced</span></div>
+            <div class="lesson-detail"><span class="ld-label">Materials</span><span class="ld-val">Included in session fee</span></div>
+          </div>
+          <a href="contact.html" class="btn-primary">Enquire About Lessons</a>
+        </div>
+        <div class="lesson-card reveal reveal-delay-1">
+          <div class="lesson-icon">C</div>
+          <div class="lesson-type">Consultation</div>
+          <h3 class="lesson-title">Commission & Advisory</h3>
+          <p class="lesson-desc">Guidance for collectors, architects, and developers considering sculpture in public or private space. Paul offers site assessment, material and scale recommendations, and full commission management from brief to installation.</p>
+          <div class="lesson-details">
+            <div class="lesson-detail"><span class="ld-label">Format</span><span class="ld-val">In-person or remote</span></div>
+            <div class="lesson-detail"><span class="ld-label">Scope</span><span class="ld-val">Single session or ongoing</span></div>
+            <div class="lesson-detail"><span class="ld-label">Suitable for</span><span class="ld-val">Collectors, architects, developers</span></div>
+            <div class="lesson-detail"><span class="ld-label">Follow-up</span><span class="ld-val">Written brief available</span></div>
+          </div>
+          <a href="contact.html" class="btn-primary">Book a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="pricing-inner">
+      <div class="reveal">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Investment in <em>Form</em></h2>
+        <p style="font-size:0.78rem;font-weight:200;color:var(--stone);margin-top:1.5rem;max-width:500px;line-height:2;letter-spacing:0.05em;">All prices in NZD. Commission pieces are quoted individually based on scale, material, and complexity. Contact Paul to discuss your requirements.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="price-tier">Instruction</div>
+          <div class="price-name">Single Lesson</div>
+          <div class="price-amount">$180</div>
+          <div class="price-period">per session · 2–3 hours</div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>One-to-one tuition in the studio</li>
+            <li>All materials provided</li>
+            <li>Clay, stone or casting fundamentals</li>
+            <li>Suitable for all skill levels</li>
+          </ul>
+          <a href="contact.html" class="price-btn">Book a Lesson</a>
+        </div>
+        <div class="price-card featured reveal reveal-delay-1">
+          <div class="price-tier">Instruction</div>
+          <div class="price-name">Lesson Block</div>
+          <div class="price-amount">$800</div>
+          <div class="price-period">5 sessions · best value</div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Five consecutive studio sessions</li>
+            <li>Structured progression across techniques</li>
+            <li>Materials included throughout</li>
+            <li>Take-home work after each session</li>
+            <li>One complimentary portfolio review</li>
+          </ul>
+          <a href="contact.html" class="price-btn">Book a Block</a>
+        </div>
+        <div class="price-card reveal reveal-delay-2">
+          <div class="price-tier">Consultation</div>
+          <div class="price-name">Advisory Session</div>
+          <div class="price-amount">$250</div>
+          <div class="price-period">per hour · in-person or remote</div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Site or brief assessment</li>
+            <li>Material & scale guidance</li>
+            <li>Commission scoping & budgeting</li>
+            <li>Written summary on request</li>
+          </ul>
+          <a href="contact.html" class="price-btn">Book a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-inner reveal">
+      <div class="section-label" style="justify-content:center;">Commission</div>
+      <h2 class="cta-title">Begin a <em>Conversation</em></h2>
+      <p class="cta-sub">Every commission starts with a conversation. Bring your vision — however formed or unformed — and Paul will help find the shape it wants to become.</p>
+      <a href="contact.html" class="btn-primary">Contact Paul</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Paul <span>Brunton</span> Sculpture</div>
+      <p class="footer-copy">&copy; <span id="current-year"></span> Paul Brunton Sculpture. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+    (function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) *.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+
+    // Nav scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
